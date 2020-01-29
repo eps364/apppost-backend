@@ -9,6 +9,8 @@ if(process.env.NODE_ENV !== 'production') require("dotenv-safe").config()
 
 const app = express()
 
+app.get('/', (req, res) => res.send('<h1> Post App Compasso </h1>'));
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
