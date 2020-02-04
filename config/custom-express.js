@@ -3,6 +3,7 @@ const consign = require('consign')
 const express_hateoas_links = require('express-hateoas-links')
 const mongoose_connect = require('./mongoose-connect')
 const routes = require('../app/routes')
+const cors = require('cors');
 require("dotenv/config")
 
 //Variaveis de ambiente
@@ -10,6 +11,7 @@ require("dotenv/config")
 
 const app = express()
 
+app.use(cors());
 app.get('/', (req, res) => res.send('<h1> Post App Compasso </h1>'));
 
 app.use(express.json())
