@@ -3,9 +3,10 @@ const consign = require('consign')
 const express_hateoas_links = require('express-hateoas-links')
 const mongoose_connect = require('./mongoose-connect')
 const routes = require('../app/routes')
+require("dotenv/config")
 
 //Variaveis de ambiente
-if(process.env.NODE_ENV !== 'production') require("dotenv-safe").config()
+//if(process.env.NODE_ENV !== 'production') 
 
 const app = express()
 
