@@ -12,7 +12,7 @@ class AuthenticateController {
             this._repository.authenticate(user)
                 .then(success => {
 
-                    const token = this._jwt.sign(success, process.env.SECRET, {
+                    const token = this._jwt.sign(success, process.env.APP_SECRET, {
                         expiresIn: 84600 // expires in 5min
                     });
 
@@ -35,7 +35,7 @@ class AuthenticateController {
             if (!token)
                 return reject({ auth: false, message: 'No token provided.' })
 
-            this._jwt.verify(token, process.env.SECRET, function (err, decoded) {
+            this._jwt.verify(token, process.env.APP_SECRET, function (err, decoded) {
 
                 if (err)
                     return reject({ auth: false, message: 'Failed to authenticate token.' })
