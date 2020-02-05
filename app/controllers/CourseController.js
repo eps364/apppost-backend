@@ -6,18 +6,7 @@ class CourseController {
     }
 
     async create(curso) {
-        const schema = Yup.object.shape({
-            name: Yup.nome.string().required().min(3),
-            ativo: Yup.boolean()
-        })
-
-        if (!(await schema.isValid(curso))) {
-            return res.status(400).json({
-                error: 'Erro na validação'
-            })
-        }
-
-        curso.ativo = true
+        
         return await new Promise((resolve, reject) => {
 
             this._repository.create(curso)

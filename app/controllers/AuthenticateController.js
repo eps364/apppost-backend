@@ -6,17 +6,7 @@ class AuthenticateController {
     }
 
     async authenticate(user) {
-        const schema = Yup.object.shape({
-            email: Yup.email().required(),
-            senha: Yup.string().required()
-        })
-
-        if (!(await schema.isValid(user))) {
-            return res.status(400).json({
-                error: 'Erro na validação'
-            })
-        }
-
+       
 
         return await new Promise((resolve, reject) => {
 
@@ -44,17 +34,7 @@ class AuthenticateController {
     }
 
     async verify(req) {
-        const schema = Yup.object.shape({
-            email: Yup.email().required(),
-            senha: Yup.string().required()
-        })
-
-        if (!(await schema.isValid(req))) {
-            return res.status(400).json({
-                error: 'Erro na validação'
-            })
-        }
-
+        
         return new Promise((resolve, reject) => {
 
             let token = req.headers['x-access-token'];
