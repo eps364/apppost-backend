@@ -5,11 +5,26 @@ class StudentController {
     }
 
     async create(student) {
+        const schema = Yup.object.shape({
+            name: Yup.string().required().min(3),
+            email: Yup.email().required(),
+            senha: Yup.string().required(),
+            cpf: Yup.number().required().min(11).max(11),
+            ra: Yup.number().min(3).max(13),
+            perfil: Yup.array(),
+            curso: Yup.array()
+        })
+
+        if (!(await schema.isValid(user))) {
+            return res.status(400).json({
+                error: 'Erro na validação'
+            })
+        }
+
+        student.ativo = false;
+        student.desligado = false;
 
         return await new Promise((resolve, reject) => {
-
-            student.ativo = false;
-            student.desligado = false;
 
             this._repository.create(student)
                 .then(result => {
