@@ -1,5 +1,3 @@
-require('dotenv/config');
-
 const host = process.env.HOST || 'http://localhost';
 
 module.exports = app => {
