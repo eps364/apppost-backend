@@ -42,8 +42,6 @@ class AuthenticateController {
 
                 req.userId = decoded.id
 
-                //console.log(req.userId)
-
                 return resolve()
             });
 
