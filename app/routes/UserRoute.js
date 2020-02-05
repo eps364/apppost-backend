@@ -1,3 +1,7 @@
+require('dotenv/config');
+
+const host = process.env.HOST || 'http://localhost';
+
 module.exports = app => {
 
     const usercontroller = new app.controllers.UserController(
@@ -9,9 +13,9 @@ module.exports = app => {
 
             usercontroller.create(req.body)
                 .then(success => res.status(201).json(success, [
-                    { rel: "self", method: "GET", href: `http://localhost:3000/user/${success._id}` },
-                    { rel: "delete", method: "DELETE", title: 'Delete user', href: `http://localhost:3000/user/${success._id}` },
-                    { rel: "update", method: "PUT", title: 'Update user', href: `http://localhost:3000/user/${success._id}` }
+                    { rel: "self", method: "GET", href: `${host}/user/${success._id}` },
+                    { rel: "delete", method: "DELETE", title: 'Delete user', href: `${host}/user/${success._id}` },
+                    { rel: "update", method: "PUT", title: 'Update user', href: `${host}/user/${success._id}` }
                 ]))
                 .catch(error => res.status(500).json(error))
 

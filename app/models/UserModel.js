@@ -1,6 +1,7 @@
 // user Model
 
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 module.exports = () => {
 
@@ -73,6 +74,14 @@ module.exports = () => {
             type: Boolean,
             default: false
         }
+    })
+
+    UserSchema.pre('save', async function(next){
+        const hash = await bcrypt.hash(this.senha, 10);
+
+        this.senha = hash;
+
+        next();
     })
     
     

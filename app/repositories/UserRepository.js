@@ -1,5 +1,3 @@
-const bcrypt = require('bcrypt')
-
 class UserRepository {
 
     constructor(model) {
@@ -8,17 +6,13 @@ class UserRepository {
 
     async create(user) {
 
-        user.senha = await bcrypt.hash(user.senha, 10);
+
+        const usuario = await this._model.findOne({ email: user.email}, {email: 1});
 
         return await new Promise((resolve, reject) => {
 
-            const usuario = this._model.findOne({
-                email: user.email
-            })
-            console.log(usuario)
-
             if (usuario) {
-                return reject(`O usuario ${usuario} já esta cadastrado`)
+                return reject(`O usuario ${usuario.email} já esta cadastrado`)
             } else {
                 this._model.create(user)
                     .then(sucesso => {
@@ -27,7 +21,6 @@ class UserRepository {
                     .catch(error => {
                         return reject(error)
                     })
-
             }
         })
     }
@@ -122,6 +115,9 @@ class UserRepository {
     }
     
     async authenticate(user) {
+
+        console.log(user)
+
         return await new Promise((resolve, reject) => {
 
             this._model.findOne({
@@ -132,8 +128,10 @@ class UserRepository {
                 }).select('+senha')
                 .then(success => {
 
-                    if (success === null)
-                        return reject('E-mail/Senha Inválidos')
+                    console.log(success)
+                    
+                    if (!success)
+                        return reject('Usuario não cadastrado')
 
                     bcrypt.compare(user.senha, success.senha, (err, res) => { 
 
@@ -142,7 +140,7 @@ class UserRepository {
 
                         if (res)
                             return resolve({
-                                id: success._id, token: success.token
+                                id: success._id, token: success.token, id: success.id
                             })
 
                         if (err)
