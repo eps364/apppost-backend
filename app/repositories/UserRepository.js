@@ -130,17 +130,15 @@ class UserRepository {
                 }).select('+senha')
                 .then(success => {
 
-                    const { id, ativo, desligado, senha } = success;
+                    console.log(success)
 
-                    console.log(id, ativo, desligado, senha);
-                    
                     if (!success)
                         return reject('Usuario não cadastrado')
 
-                    if (desligado === true)
+                    if (success.desligado === true)
                         return reject('Usuario inativo')    
 
-                    if (ativo === false && desligado === false)
+                    if (success.ativo === false && success.desligado === false)
                         return reject('Usuario aguardando aprovação')
                     
 
@@ -159,7 +157,9 @@ class UserRepository {
                     });
                 })
                 .catch(error => {
+                    console.log(error)
                     return reject(error)
+                    
                 })
         })
     }

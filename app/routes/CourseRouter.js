@@ -1,4 +1,3 @@
-
 module.exports = app => {
 
     const courseController = new app.controllers.CourseController(
