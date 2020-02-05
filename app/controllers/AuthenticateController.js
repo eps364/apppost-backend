@@ -16,7 +16,7 @@ class AuthenticateController {
                         expiresIn: 84600 // expires in 5min
                     });
 
-                    return resolve({ auth: true, token: token })
+                    return resolve({ auth: true, token: token, id: success.id })
 
                 })
                 .catch(error => {
