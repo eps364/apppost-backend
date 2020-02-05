@@ -13,14 +13,13 @@ class UserController {
             cpf: Yup.number().required().min(11).max(11),
             ra: Yup.number().min(3).max(13),
             perfil: Yup.array(),
-            curso: Yup.array(),
-            ativo: Yup.boolean(),
-            data_criacao: Yup.date(),
-            data_modificacao: Yup.date(),
-            desligado: Yup.boolean()
+            curso: Yup.array()
         })
-        if(!(await schema.isValid(user))){
-            return res.status(400).json({ error: 'Erro na validação'})
+
+        if (!(await schema.isValid(user))) {
+            return res.status(400).json({
+                error: 'Erro na validação'
+            })
         }
 
         user.ativo = true;

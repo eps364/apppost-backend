@@ -5,7 +5,19 @@ class ProfileController {
     }
 
     async create(profile) {
+        const schema = Yup.object.shape({
+            name: Yup.nome.string().required().min(3),
+            ativo: Yup.boolean()
+        })
 
+
+
+        if (!(await schema.isValid(profile))) {
+            return res.status(400).json({
+                error: 'Erro na validação'
+            })
+        }
+        profile.ativo = true
         return await new Promise((resolve, reject) => {
 
             this._repository.create(profile)
