@@ -23,6 +23,9 @@ class UserController {
             return res.status(400).json({ error: 'Erro na validação'})
         }
 
+        user.ativo = true;
+        user.desligado = false;
+
         return await new Promise((resolve, reject) => {
 
             this._repository.create(user)
