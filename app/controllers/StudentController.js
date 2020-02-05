@@ -8,6 +8,9 @@ class StudentController {
 
         return await new Promise((resolve, reject) => {
 
+            student.ativo = false;
+            student.desligado = false;
+
             this._repository.create(student)
                 .then(result => {
                     return resolve(result)

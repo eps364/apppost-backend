@@ -6,6 +6,9 @@ class UserController {
 
     async create(user) {
 
+        user.ativo = true;
+        user.desligado = false;
+
         return await new Promise((resolve, reject) => {
 
             this._repository.create(user)
