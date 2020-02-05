@@ -1,3 +1,5 @@
 const express = require('./config/custom-express')
 
-express.listen(process.env.PORT, () => console.log(`Servidor rodando na porta: ${process.env.PORT}!`))
+const porta = process.env.PORT || 3000;
+
+express.listen(porta, () => console.log(`Servidor rodando na porta: ${porta}!`))
