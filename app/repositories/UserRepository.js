@@ -118,22 +118,31 @@ class UserRepository {
     
     async authenticate(user) {
 
-        console.log(user)
-
         return await new Promise((resolve, reject) => {
 
             this._model.findOne({
                     email: user.email
                 }, {
                     _id: 1,
-                    senha: 1
+                    senha: 1,
+                    ativo: 1,
+                    desligado: 1
                 }).select('+senha')
                 .then(success => {
 
-                    console.log(success)
+                    const { id, ativo, desligado, senha } = success;
+
+                    console.log(id, ativo, desligado, senha);
                     
                     if (!success)
                         return reject('Usuario não cadastrado')
+
+                    if (desligado === true)
+                        return reject('Usuario inativo')    
+
+                    if (ativo === false && desligado === false)
+                        return reject('Usuario aguardando aprovação')
+                    
 
                     bcrypt.compare(user.senha, success.senha, (err, res) => { 
 
