@@ -1,0 +1,9 @@
+node_modules/ 
+.git/
+.vscode/
+
+.env
+.eslintrc.json
+yarn.lock
+package-lock.json
+nodemon.json
