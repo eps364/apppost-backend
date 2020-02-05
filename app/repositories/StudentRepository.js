@@ -5,15 +5,24 @@ class StudentRepository {
     }
 
     async create(student) {
+
+        const usuario = await this._model.findOne({ email: student.email}, {email: 1});
+        console.log(usuario)
+
         return await new Promise((resolve, reject) => {
 
-            this._model.create(student)
+            if(usuario){
+                reject(`Estudante usuario ${usuario.email} já cadastrado.`)
+            }
+            else{
+                this._model.create(student)
                 .then(sucesso => {
                     return resolve(sucesso)
                 })
                 .catch(error => {
                     return reject(error)
                 })
+            }            
 
         })
     }
