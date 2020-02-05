@@ -1,8 +1,8 @@
 module.exports = app => {
 
-    const profilecontroller = new app.app.controllers.ProfileController(
-        new app.app.repositories.ProfileRepository(
-            app.app.models.ProfileModel))
+    const profilecontroller = new app.controllers.ProfileController(
+        new app.repositories.ProfileRepository(
+            app.models.ProfileModel))
 
     app.route('/perfil')
         .post((req, res) => {

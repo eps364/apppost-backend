@@ -1,8 +1,8 @@
 module.exports = app => {
 
-    const usercontroller = new app.app.controllers.UserController(
-        new app.app.repositories.UserRepository(
-            app.app.models.UserModel))
+    const usercontroller = new app.controllers.UserController(
+        new app.repositories.UserRepository(
+            app.models.UserModel))
 
     app.route('/user')
         .post((req, res) => {

@@ -1,8 +1,8 @@
 module.exports = app => {
 
-    const usercontroller = new app.app.controllers.StudentController(
-        new app.app.repositories.StudentRepository(
-            app.app.models.UserModel))
+    const usercontroller = new app.controllers.StudentController(
+        new app.repositories.StudentRepository(
+            app.models.UserModel))
 
     app.route('/aluno')
         .post((req, res) => {

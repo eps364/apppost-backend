@@ -1,8 +1,8 @@
 module.exports = app => {
 
-    const postcontroller = new app.app.controllers.PostController(
-        new app.app.repositories.PostRepository(
-            app.app.models.PostModel))
+    const postcontroller = new app.controllers.PostController(
+        new app.repositories.PostRepository(
+            app.models.PostModel))
 
     app.route('/posts')
         .post((req, res) => {

@@ -1,9 +1,9 @@
 
 module.exports = app => {
 
-    const courseController = new app.app.controllers.CourseController(
-        new app.app.repositories.CourseRepository(
-            app.app.models.CourseModel)) 
+    const courseController = new app.controllers.CourseController(
+        new app.repositories.CourseRepository(
+            app.models.CourseModel)) 
       
     app.route('/cursos')
         .post((req, res) => {

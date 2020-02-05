@@ -23,10 +23,10 @@ app.use(express_hateoas_links)
 //Conecting with database
 mongoose_connect()
 
-consign()
-    .include('./app/models')
-    .then('./app/repositories')
-    .then('./app/controllers')
+consign({cwd: 'app'})
+    .include('models')
+    .then('repositories')
+    .then('controllers')
     .into(app)
 
 //Routes

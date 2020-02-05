@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken')
 
 module.exports = app => {
 
-    const autcontroller = new app.app.controllers.AuthenticateController(
-        new app.app.repositories.UserRepository(
-            app.app.models.UserModel),
+    const autcontroller = new app.controllers.AuthenticateController(
+        new app.repositories.UserRepository(
+            app.models.UserModel),
         jwt
     )
 
