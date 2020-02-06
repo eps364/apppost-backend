@@ -9,8 +9,9 @@ const connection = process.env.DB_HOST || strCon
 module.exports = () => {
   mongoose.connect(connection, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
+      useUnifiedTopology: true,
+      useFindAndModify: false
+  })
     .then(console.log('Iniciando conexão com o banco'))
     .catch((erro) => console.log('Houve um erro ao conectar no banco: ' + erro))
 }

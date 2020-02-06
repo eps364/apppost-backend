@@ -27,6 +27,7 @@ consign({ cwd: 'app'})
     .include('models')
     .then('repositories')
     .then('controllers')
+    .then('utils')
     .into(app)
 
 //Routes
