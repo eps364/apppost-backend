@@ -2,29 +2,22 @@ module.exports = app => {
 
     const courseController = new app.controllers.CourseController(
         new app.repositories.CourseRepository(
-            app.models.CourseModel)) 
+            app.models.CourseModel),
+            new app.utils.Hateoas('cursos'))
       
     app.route('/cursos')
         .post((req, res) => {
 
             courseController.create(req.body)
-                .then(success => res.status(201).json(success, [
-                    { rel: "self", method: "GET", href: `http://localhost:3000/cursos/${success._id}` },
-                    { rel: "delete", method: "DELETE", title: 'Delete Course', href: `http://localhost:3000/cursos/${success._id}` },
-                    { rel: "update", method: "PUT", title: 'Update Course', href: `http://localhost:3000/cursos/${success._id}` }
-                ]))
+                .then(success => res.status(201).json(success))
                 .catch(error => res.status(500).json(error))
         })
         .get((req, res) => {
 
-            //console.log(req.userId)
-
             courseController.find()
                 .then(success => res.status(200).json(success))
                 .catch(error => res.status(500).json(error))
-
        })
-
 
     app.route('/cursos/:id')
         .get((req, res) => {
@@ -35,7 +28,7 @@ module.exports = app => {
         .delete((req, res) => {
 
             courseController.delete(req.params.id)
-                .then(success => res.status(200).json('Curso excluido com sucesso'))
+                .then(success => res.status(200).json(success))
                 .catch(error => res.status(500).json(error))
         })
         .put((req, res) => {

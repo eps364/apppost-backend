@@ -65,10 +65,16 @@ class AuthenticateController {
 
         return await new Promise((resolve, reject) => {
 
-            const urls = [{
-                url: '/aluno',
-                method: 'POST'
-            }]
+            const urls = [
+                {
+                    url: '/aluno',
+                    method: 'POST'
+                },
+                {
+                    url: '/cursos',
+                    method: 'GET'
+                }
+            ]
 
             urls.forEach(u => {
                 if (u.method === req.method && u.url === req.url)
