@@ -17,6 +17,11 @@ module.exports = () => {
         data_criacao: {
             type: Date,
             default: Date.now
+        },
+        
+        data_modificacao: {
+            type: Date,
+            required: false
         }
 
     })

@@ -16,7 +16,7 @@ class CourseController {
             this._repository.create(curso)
                 .then(success => {
 
-                    let objeto = this._hateoas.create(success, 'cursos');
+                    let objeto = this._hateoas.create(success);
  
                     return resolve({objeto});
                 })

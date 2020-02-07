@@ -5,6 +5,7 @@ class CourseRepository {
     }
 
     async create(curso) {
+
         return await new Promise((resolve, reject) => {
 
             this._model.create(curso)
@@ -14,7 +15,6 @@ class CourseRepository {
                 .catch(error => {
                     return reject(error)
                 })
-
         })
     }
 

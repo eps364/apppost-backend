@@ -108,6 +108,7 @@ class UserRepository {
                     select: 'nome'
                 }])
                 .then(success => {
+
                     return resolve(success)
                 })
                 .catch(error => {
@@ -130,26 +131,24 @@ class UserRepository {
                 }).select('+senha')
                 .then(success => {
 
-                    console.log(success)
-
                     if (!success)
-                        return reject('Usuario não cadastrado')
+                        return reject({ mensagem: 'Usuario não cadastrado' })
 
                     if (success.desligado === true)
-                        return reject('Usuario inativo')    
+                        return reject({ mensagem: 'Usuario inativo' })    
 
                     if (success.ativo === false && success.desligado === false)
-                        return reject('Usuario aguardando aprovação')
+                        return reject({ mensagem: 'Usuario aguardando aprovação' })
                     
 
                     bcrypt.compare(user.senha, success.senha, (err, res) => { 
-
+                       
                         if (!res)
-                            return reject('E-mail/Senha Inválidos')
+                            return reject({ mensagem: 'E-mail/Senha Inválidos' })
 
                         if (res)
                             return resolve({
-                                id: success._id, token: success.token, id: success.id
+                                id: success.id
                             })
 
                         if (err)
@@ -157,7 +156,7 @@ class UserRepository {
                     });
                 })
                 .catch(error => {
-                    console.log(error)
+
                     return reject(error)
                     
                 })

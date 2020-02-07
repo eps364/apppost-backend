@@ -1,12 +1,12 @@
 const Yup = require('yup')
 class UserController {
 
-    constructor(repository) {
+    constructor(repository, hateoas) {
         this._repository = repository
+        this._hateoas = hateoas
     }
 
-    async create(user) {
-        
+    async create(user) {        
 
         user.ativo = true;
         user.desligado = false;
@@ -14,8 +14,11 @@ class UserController {
         return await new Promise((resolve, reject) => {
 
             this._repository.create(user)
-                .then(result => {
-                    return resolve(result)
+                .then(success => {
+
+                    let objeto = this._hateoas.create(success);
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
                     console.log(error)
@@ -28,10 +31,12 @@ class UserController {
         return await new Promise((resolve, reject) => {
             this._repository.find()
                 .then(success => {
-                    return resolve(success)
+
+                    let objeto = this._hateoas.findAll(success);
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
-                    console.log(error)
                     return reject(error)
                 })
         })
@@ -43,10 +48,12 @@ class UserController {
 
             this._repository.delete(id)
                 .then(success => {
-                    return resolve(success)
+
+                    let objeto = this._hateoas.delete(success);
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
-                    console.log(error)
                     return reject(error)
                 })
 
@@ -59,10 +66,13 @@ class UserController {
 
             this._repository.findById(id)
                 .then(success => {
-                    return resolve(success)
+
+                    let objeto = this._hateoas.findOne([success]);                   
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
-                    console.log(error)
+
                     return reject(error)
                 })
 
@@ -76,15 +86,15 @@ class UserController {
             this._repository.updateOne(user)
                 .then(success => {
 
-                    return resolve(success)
+                    let objeto = this._hateoas.update(success);
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
-                    console.log(error)
                     return reject(error)
                 })
-
         })
     }
-
 }
+
 module.exports = () => UserController

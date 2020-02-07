@@ -2,19 +2,16 @@ module.exports = app => {
 
     const postcontroller = new app.controllers.PostController(
         new app.repositories.PostRepository(
-            app.models.PostModel))
+            app.models.PostModel),
+        new app.utils.Hateoas('posts'))
 
     app.route('/posts')
         .post((req, res) => {
 
-            //console.log(req.userId)
+            req.body.usuario = req.userId
 
             postcontroller.create(req.body)
-                .then(success => res.status(201).json(success, [
-                    { rel: "self", method: "GET", href: `http://localhost:3000/posts/${success._id}` },
-                    { rel: "delete", method: "DELETE", title: 'Delete Post', href: `http://localhost:3000/posts/${success._id}` },
-                    { rel: "update", method: "PUT", title: 'Update Post', href: `http://localhost:3000/posts/${success._id}` }
-                ]))
+                .then(success => res.status(201).json(success))
                 .catch(error => res.status(500).json(error))
 
         })

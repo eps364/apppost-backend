@@ -5,12 +5,9 @@ class AuthenticateController {
         this._jwt = jwt
     }
 
-    async authenticate(user) {
-       
+    async authenticate(user) {       
 
         return await new Promise((resolve, reject) => {
-
-
 
             this._repository.authenticate(user)
                 .then(success => {
@@ -72,6 +69,10 @@ class AuthenticateController {
                 },
                 {
                     url: '/cursos',
+                    method: 'GET'
+                },
+                {
+                    url: '/perfil',
                     method: 'GET'
                 }
             ]

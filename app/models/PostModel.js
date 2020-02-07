@@ -8,20 +8,24 @@ module.exports = () => {
             type: String,
             required: true
         },
+        
         descricao: {
             type: String,
             required: true
         },
+
         usuario: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true
         },
+
         curso: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Course',
             required: true
         }],
+
         data_criacao: {
             type: Date,
             default: Date.now,
@@ -29,8 +33,7 @@ module.exports = () => {
         },
         data_modificacao: {
             type: Date,
-            default: Date.now,
-            required: true
+            required: false
         },
         data_evento: {
             type: Date,
@@ -38,7 +41,6 @@ module.exports = () => {
         },
         ativo: {
             type: Boolean,
-            default: true,
             required: true
         }
     })
