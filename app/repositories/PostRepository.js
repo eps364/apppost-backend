@@ -9,12 +9,11 @@ class PostRepository {
 
             this._model.create(post)
                 .then(success => {
-                    return resolve(success)
+                    return resolve(success);
                 })
                 .catch(error => {
-                    return reject('Internal Server Error')
+                    return reject(error)
                 })
-
         })
     }
 

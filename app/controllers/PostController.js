@@ -1,21 +1,27 @@
 class PostController {
 
-    constructor(repository) {
+    constructor(repository, hateoas) {
         this._repository = repository
+        this._hateoas = hateoas
     }
 
-    async create(post) {
+    async create(post) {        
+
+        post.ativo = true;
 
         return await new Promise((resolve, reject) => {
 
             this._repository.create(post)
                 .then(success => {
-                    return resolve(success)
+
+                    let objeto = this._hateoas.create(success);
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
+
                     return reject(error)
                 })
-
         })
     }
 
@@ -24,12 +30,14 @@ class PostController {
         return await new Promise((resolve, reject) => {
             this._repository.find()
                 .then(success => {
-                    return resolve(success)
+
+                    let objeto = this._hateoas.findAll(success);
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
                     return reject(error)
                 })
-
         })
     }
 
@@ -39,6 +47,8 @@ class PostController {
 
             this._repository.findWithPagination(attributes)
                 .then(success => {
+                    
+
                     return resolve(success)
                 })
                 .catch(error => {

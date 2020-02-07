@@ -80,7 +80,8 @@ class Hateoas {
         }
         else {
 
-            let newObjeto = {};
+            let newObjeto = [];
+
 
             objeto.forEach(obj => {
             
@@ -92,7 +93,7 @@ class Hateoas {
                 obj.post_url = `${host}/${this._rota}`;
                 obj.get_all_url = `${host}/${this._rota}`;    
     
-                newObjeto = obj;
+                newObjeto.push(obj);
     
            })
     
@@ -103,7 +104,7 @@ class Hateoas {
 
     findAll(objeto){
 
-          if(objeto.length === 0){
+        if(objeto.length === 0){
 
             let newObjeto = {};
 
@@ -132,7 +133,7 @@ class Hateoas {
            })    
            
             return newObjeto;
-        }       
+        }
 
     }
 

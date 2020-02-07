@@ -11,7 +11,10 @@ module.exports = () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false
+  },function(erro) {
+      if(erro)
+        console.log(`Não foi possivel connectar no banco de dados: ${JSON.stringify(erro)}`);
+
+      console.log('Connectado ao banco de dados');
   })
-    .then(console.log('Iniciando conexão com o banco'))
-    .catch((erro) => console.log('Houve um erro ao conectar no banco: ' + erro))
 }

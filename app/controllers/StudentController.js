@@ -1,7 +1,8 @@
 class StudentController {
 
-    constructor(repository) {
+    constructor(repository, hateoas) {
         this._repository = repository
+        this._hateoas = hateoas
     }
 
     async create(student) {
@@ -12,8 +13,11 @@ class StudentController {
         return await new Promise((resolve, reject) => {
 
             this._repository.create(student)
-                .then(result => {
-                    return resolve(result)
+                .then(success => {
+
+                    let objeto = this._hateoas.create(success)
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
                     console.log(error)
@@ -26,10 +30,12 @@ class StudentController {
         return await new Promise((resolve, reject) => {
             this._repository.find()
                 .then(success => {
-                    return resolve(success)
+
+                    let objeto = this._hateoas.findAll(success);
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
-                    console.log(error)
                     return reject(error)
                 })
         })

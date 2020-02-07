@@ -32,13 +32,10 @@ module.exports = () => {
             select: false
         },
     
-        perfil: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'Profile'
-            }
-        ],
-    
+        perfil: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Profile'
+        },    
         
         curso: [
             {

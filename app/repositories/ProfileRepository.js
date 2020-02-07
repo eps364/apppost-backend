@@ -37,7 +37,7 @@ class UserRepository {
             this._model.updateOne({
                     _id: id
                 }, {
-                    ativo: false
+                    ativo: false,
                 })
                 .then(success => {
                     return resolve(success)
