@@ -24,7 +24,10 @@ class AuthenticateController {
 
                 })
                 .catch(error => {
-                    return reject(error);
+                    
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
         })
 

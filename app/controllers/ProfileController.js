@@ -18,7 +18,9 @@ class ProfileController {
                 })
                 .catch(error => {
 
-                    return reject(error)
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
         })
     }
@@ -34,7 +36,10 @@ class ProfileController {
                     return resolve({objeto})
                 })
                 .catch(error => {
-                    return reject(error)
+
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
         })
     }
@@ -51,7 +56,10 @@ class ProfileController {
                     return resolve({objeto})
                 })
                 .catch(error => {
-                    return reject(error)
+
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
 
         })
@@ -69,7 +77,10 @@ class ProfileController {
                     return resolve({objeto})
                 })
                 .catch(error => {
-                    return reject(error)
+
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
 
         })
@@ -87,7 +98,10 @@ class ProfileController {
                     return resolve({ objeto })
                 })
                 .catch(error => {
-                    return reject(error)
+                    
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
 
         })

@@ -101,7 +101,7 @@ class CourseController {
 
                     let objeto = this._hateoas.update(success);
 
-                    return resolve(objeto)
+                    return resolve({objeto})
                 })
                 .catch(error => {
 

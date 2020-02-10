@@ -12,7 +12,7 @@ class PostRepository {
                     return resolve(success);
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
         })
     }
@@ -27,13 +27,10 @@ class PostRepository {
                 .populate(['curso', 'usuario'])
                 .then(success => {
 
-                    if (success.length == 0)
-                        success = 'Nenhum post encontrado!'
-
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject('Internal Server Error')
+                    return reject(error.message)
                 })
 
         })
@@ -49,13 +46,10 @@ class PostRepository {
                 .populate(['curso', 'usuario']).skip(parseInt(attributes.inicio)).limit(parseInt(attributes.fim))
                 .then(success => {
 
-                    if (success.length == 0)
-                        success = 'Nenhum post encontrado!'
-
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject('Internal Server Error')
+                    return reject(error.message)
                 })
 
         })
@@ -76,7 +70,7 @@ class PostRepository {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject('Internal Server Error')
+                    return reject(error.message)
                 })
 
         })
@@ -93,13 +87,10 @@ class PostRepository {
                 .populate(['curso', 'usuario'])
                 .then(success => {
 
-                    if (success.length == 0)
-                        success = 'Nenhum post encontrado!'
-
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject('Internal Server Error')
+                    return reject(error.message)
                 })
 
         })
@@ -118,8 +109,7 @@ class PostRepository {
                 })
                 .catch(error => {
 
-                    console.log(error)
-                    return reject('Internal Server Error')
+                    return reject(error.message)
                 })
 
         })
@@ -137,13 +127,10 @@ class PostRepository {
                 .populate(['curso', 'usuario'])
                 .then(success => {
 
-                    if (success.length == 0)
-                        success = 'Nenhum post encontrado!'
-
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject('Internal Server Error')
+                    return reject(error.message)
                 })
 
         })
@@ -161,13 +148,10 @@ class PostRepository {
                 .populate(['curso', 'usuario']).skip(parseInt(attributes.inicio)).limit(parseInt(attributes.fim))
                 .then(success => {
 
-                    if (success.length == 0)
-                        success = 'Nenhum post encontrado!'
-
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject('Internal Server Error')
+                    return reject(error.message)
                 })
 
         })
