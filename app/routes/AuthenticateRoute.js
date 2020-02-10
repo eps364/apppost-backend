@@ -5,7 +5,8 @@ module.exports = app => {
     const autcontroller = new app.controllers.AuthenticateController(
         new app.repositories.UserRepository(
             app.models.UserModel),
-        jwt
+        jwt,
+        new app.utils.Hateoas('authenticate')
     )
 
     app.post('/authenticate', (req, res) => {
