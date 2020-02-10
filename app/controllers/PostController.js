@@ -5,7 +5,7 @@ class PostController {
         this._hateoas = hateoas
     }
 
-    async create(post) {        
+    async create(post) {
 
         post.ativo = true;
 
@@ -46,8 +46,7 @@ class PostController {
         return await new Promise((resolve, reject) => {
 
             this._repository.findWithPagination(attributes)
-                .then(success => {
-                    
+                .then(success => {                    
 
                     return resolve(success)
                 })
@@ -63,7 +62,10 @@ class PostController {
 
             this._repository.delete(id)
                 .then(success => {
-                    return resolve(success)
+
+                    let objeto = this._hateoas.delete(success);
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
                     return reject(error)
@@ -78,7 +80,10 @@ class PostController {
 
             this._repository.findById(id)
                 .then(success => {
-                    return resolve(success)
+
+                    let objeto = this._hateoas.findOne(success);
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
                     return reject(error)
@@ -93,7 +98,10 @@ class PostController {
 
             this._repository.update(post)
                 .then(success => {
-                    return resolve(success)
+
+                    let objeto = this._hateoas.update(success);
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
                     return reject(error)

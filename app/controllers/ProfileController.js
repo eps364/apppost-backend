@@ -20,7 +20,6 @@ class ProfileController {
 
                     return reject(error)
                 })
-
         })
     }
 

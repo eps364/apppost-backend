@@ -21,7 +21,10 @@ class CourseController {
                     return resolve({objeto});
                 })
                 .catch(error => {
-                    return reject(error)
+
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
         })
     }
@@ -40,8 +43,10 @@ class CourseController {
                     return resolve({objeto})
                 })
                 .catch(error => {
-                    console.log(error)
-                    return reject(error)
+                    
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
 
         })
@@ -59,8 +64,9 @@ class CourseController {
                     return resolve(objeto)
                 })
                 .catch(error => {
-                    console.log(error)
-                    return reject(error)
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
 
         })
@@ -77,8 +83,10 @@ class CourseController {
                     return resolve({objeto})
                 })
                 .catch(error => {
-                    console.log(error)
-                    return reject(error)
+                    
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
 
         })
@@ -97,7 +105,9 @@ class CourseController {
                 })
                 .catch(error => {
 
-                    return reject(error)
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
         })
     }

@@ -107,14 +107,18 @@ class PostRepository {
 
     async update(post) {
 
+        const { _id, ...info } = post;
+
         return await new Promise((resolve, reject) => {
 
             this._model.findByIdAndUpdate(
-                { _id: post._id }, { $set: post }, { new: true })
+                { _id: post._id }, { $set: info }, { new: true })
                 .then(success => {
                     return resolve(success)
                 })
                 .catch(error => {
+
+                    console.log(error)
                     return reject('Internal Server Error')
                 })
 
