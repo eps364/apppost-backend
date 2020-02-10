@@ -65,14 +65,15 @@ module.exports = app => {
         .delete((req, res) => {
 
             postcontroller.delete(req.params.id)
-                .then(success => res.status(204).json(success))
+                .then(success => res.status(200).json(success))
                 .catch(error => res.status(500).json(error))
         })
         .put((req, res) => {
 
+            req.body._id = req.params.id;
+
             postcontroller.update(req.body)
-                .then(success => res.status(204).json(success))
+                .then(success => res.status(200).json(success))
                 .catch(error => res.status(500).json(error))
         })
-
 }

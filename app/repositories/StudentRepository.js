@@ -20,7 +20,7 @@ class StudentRepository {
                     return resolve(sucesso)
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
             }            
 
@@ -32,7 +32,7 @@ class StudentRepository {
             this._model.find()
                 .populate([ 
                         { 
-                            path: 'curso', select: 'nome'
+                            path: 'curso.curso_id', select: 'nome'
                         },
                         {
                             path: 'perfil', select: 'nome'
@@ -42,7 +42,7 @@ class StudentRepository {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
         })
     }
@@ -62,7 +62,7 @@ class StudentRepository {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
         })
     }
@@ -72,14 +72,12 @@ class StudentRepository {
             
              const { id, ...newUser } = student;       
 
-             student.data_modificacao = new Date;
-
             this._model.findByIdAndUpdate({ _id: id }, { $set: newUser },{ new: true })
                 .then(success => {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
 
         })
@@ -91,7 +89,7 @@ class StudentRepository {
             this._model.findById(id)
                 .populate([ 
                     { 
-                        path: 'curso', select: 'nome'
+                        path: 'curso.curso_id', select: 'nome'
                     },
                     {
                         path: 'perfil', select: 'nome'
@@ -101,7 +99,7 @@ class StudentRepository {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
         })
     }
@@ -126,7 +124,7 @@ class StudentRepository {
                     return resolve({ success })
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
         })
     }

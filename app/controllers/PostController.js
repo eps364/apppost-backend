@@ -5,7 +5,7 @@ class PostController {
         this._hateoas = hateoas
     }
 
-    async create(post) {        
+    async create(post) {
 
         post.ativo = true;
 
@@ -20,7 +20,9 @@ class PostController {
                 })
                 .catch(error => {
 
-                    return reject(error)
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
         })
     }
@@ -36,7 +38,10 @@ class PostController {
                     return resolve({objeto})
                 })
                 .catch(error => {
-                    return reject(error)
+
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
         })
     }
@@ -46,13 +51,17 @@ class PostController {
         return await new Promise((resolve, reject) => {
 
             this._repository.findWithPagination(attributes)
-                .then(success => {
+                .then(success => {            
                     
+                    let objeto = this._hateoas.findAll(success);
 
-                    return resolve(success)
+                    return resolve(objeto)
                 })
                 .catch(error => {
-                    return reject(error)
+
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
         })
     }
@@ -63,10 +72,16 @@ class PostController {
 
             this._repository.delete(id)
                 .then(success => {
-                    return resolve(success)
+
+                    let objeto = this._hateoas.delete(success);
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
-                    return reject(error)
+
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
 
         })
@@ -78,10 +93,16 @@ class PostController {
 
             this._repository.findById(id)
                 .then(success => {
-                    return resolve(success)
+
+                    let objeto = this._hateoas.findOne(success);
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
-                    return reject(error)
+
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
 
         })
@@ -93,10 +114,16 @@ class PostController {
 
             this._repository.update(post)
                 .then(success => {
-                    return resolve(success)
+
+                    let objeto = this._hateoas.update(success);
+
+                    return resolve({objeto})
                 })
                 .catch(error => {
-                    return reject(error)
+
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
 
         })
@@ -108,12 +135,17 @@ class PostController {
 
             this._repository.search(attributes)
                 .then(success => {
-                    return resolve(success)
+
+                    let objeto = this._hateoas.findAll(success);
+
+                    return resolve(objeto)
                 })
                 .catch(error => {
-                    return reject(error)
-                })
 
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
+                })
         })
     }
 
@@ -123,14 +155,20 @@ class PostController {
 
             this._repository.searchWithPagination(attributes)
                 .then(success => {
-                    return resolve(success)
+
+                    let objeto = this._hateoas.findAll(success);
+
+                    return resolve(objeto)
                 })
                 .catch(error => {
-                    return reject(error)
+
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
                 })
 
         })
     }
-
 }
+
 module.exports = () => PostController

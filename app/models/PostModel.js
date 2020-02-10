@@ -45,6 +45,31 @@ module.exports = () => {
         }
     })
 
+    PostSchema.pre('update', async function (next) {
+
+        this.set({ data_modificacao: new Date() });
+
+        next();
+        
+    })
+
+
+    PostSchema.pre('updateOne', async function (next) {
+
+        this.set({ data_modificacao: new Date() });
+
+        next();
+        
+    })
+
+    PostSchema.pre('findOneAndUpdate', async function (next) {
+
+        this.set({ data_modificacao: new Date() });
+
+        next();
+        
+    })
+
     return mongoose.model('Post', PostSchema);
 
 }

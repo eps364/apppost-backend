@@ -13,7 +13,7 @@ class CourseRepository {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
         })
     }
@@ -29,7 +29,7 @@ class CourseRepository {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
 
         })
@@ -45,7 +45,7 @@ class CourseRepository {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
 
         })
@@ -62,7 +62,7 @@ class CourseRepository {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
 
         })
@@ -78,7 +78,7 @@ class CourseRepository {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
 
         })

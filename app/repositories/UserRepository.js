@@ -21,7 +21,7 @@ class UserRepository {
                         return resolve(sucesso)
                     })
                     .catch(error => {
-                        return reject(error)
+                        return reject(error.message)
                     })
             }
         })
@@ -43,7 +43,7 @@ class UserRepository {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
         })
     }
@@ -63,7 +63,7 @@ class UserRepository {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
         })
     }
@@ -89,7 +89,7 @@ class UserRepository {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
 
         })
@@ -112,7 +112,7 @@ class UserRepository {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
         })
     }
@@ -157,7 +157,7 @@ class UserRepository {
                 })
                 .catch(error => {
 
-                    return reject(error)
+                    return reject(error.message)
                     
                 })
         })

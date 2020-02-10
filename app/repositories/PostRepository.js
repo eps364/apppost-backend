@@ -12,7 +12,7 @@ class PostRepository {
                     return resolve(success);
                 })
                 .catch(error => {
-                    return reject(error)
+                    return reject(error.message)
                 })
         })
     }
@@ -24,16 +24,23 @@ class PostRepository {
                 {
                     ativo: true
                 })
-                .populate(['curso', 'usuario'])
+                .populate([
+                    { 
+                        path: 'curso', 
+                        select: ['nome','ativo'] 
+                    }, 
+                    {
+                         path: 'usuario', 
+                         select: ['ativo','nome','email']
+                    }
+                 ])
+                .sort({ data_criacao: 'desc' })
                 .then(success => {
-
-                    if (success.length == 0)
-                        success = 'Nenhum post encontrado!'
 
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject('Internal Server Error')
+                    return reject(error.message)
                 })
 
         })
@@ -46,16 +53,25 @@ class PostRepository {
                 {
                     ativo: true
                 })
-                .populate(['curso', 'usuario']).skip(parseInt(attributes.inicio)).limit(parseInt(attributes.fim))
+                .populate([
+                    { 
+                        path: 'curso', 
+                        select: ['nome','ativo'] 
+                    }, 
+                    {
+                         path: 'usuario', 
+                         select: ['ativo','nome','email']
+                    }
+                 ])
+                .sort({ data_criacao: 'desc' })
+                .skip(parseInt(attributes.inicio))
+                .limit(parseInt(attributes.fim))
                 .then(success => {
-
-                    if (success.length == 0)
-                        success = 'Nenhum post encontrado!'
 
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject('Internal Server Error')
+                    return reject(error.message)
                 })
 
         })
@@ -76,7 +92,7 @@ class PostRepository {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject('Internal Server Error')
+                    return reject(error.message)
                 })
 
         })
@@ -93,13 +109,10 @@ class PostRepository {
                 .populate(['curso', 'usuario'])
                 .then(success => {
 
-                    if (success.length == 0)
-                        success = 'Nenhum post encontrado!'
-
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject('Internal Server Error')
+                    return reject(error.message)
                 })
 
         })
@@ -107,15 +120,18 @@ class PostRepository {
 
     async update(post) {
 
+        const { _id, ...info } = post;
+
         return await new Promise((resolve, reject) => {
 
             this._model.findByIdAndUpdate(
-                { _id: post._id }, { $set: post }, { new: true })
+                { _id: post._id }, { $set: info }, { new: true })
                 .then(success => {
                     return resolve(success)
                 })
                 .catch(error => {
-                    return reject('Internal Server Error')
+
+                    return reject(error.message)
                 })
 
         })
@@ -130,17 +146,24 @@ class PostRepository {
             this._model.find(
                 attributes
             )
-                .populate(['curso', 'usuario'])
-                .then(success => {
+            .populate([
+                { 
+                    path: 'curso', 
+                    select: ['nome','ativo'] 
+                }, 
+                {
+                     path: 'usuario', 
+                     select: ['ativo','nome','email']
+                }
+             ])
+            .sort({ data_criacao: 'desc' })
+            .then(success => {
 
-                    if (success.length == 0)
-                        success = 'Nenhum post encontrado!'
-
-                    return resolve(success)
-                })
-                .catch(error => {
-                    return reject('Internal Server Error')
-                })
+                return resolve(success)
+            })
+            .catch(error => {
+                return reject(error.message)
+            })
 
         })
     }
@@ -154,17 +177,26 @@ class PostRepository {
             this._model.find(
                 attributes.body
             )
-                .populate(['curso', 'usuario']).skip(parseInt(attributes.inicio)).limit(parseInt(attributes.fim))
-                .then(success => {
+            .populate([
+                { 
+                    path: 'curso', 
+                    select: ['nome','ativo'] 
+                }, 
+                {
+                     path: 'usuario', 
+                     select: ['ativo','nome','email']
+                }
+             ])
+            .sort({ data_criacao: 'desc' })
+            .skip(parseInt(attributes.inicio))
+            .limit(parseInt(attributes.fim))
+            .then(success => {
 
-                    if (success.length == 0)
-                        success = 'Nenhum post encontrado!'
-
-                    return resolve(success)
-                })
-                .catch(error => {
-                    return reject('Internal Server Error')
-                })
+                return resolve(success)
+            })
+            .catch(error => {
+                return reject(error.message)
+            })
 
         })
     }

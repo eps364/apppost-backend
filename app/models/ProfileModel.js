@@ -25,8 +25,31 @@ module.exports = () => {
             type: Date,
             required: false
         }
+    })
+
+    ProfileSchema.pre('update', async function (next) {
+
+        this.set({ data_modificacao: new Date() });
+
+        next();
+        
+    })
 
 
+    ProfileSchema.pre('updateOne', async function (next) {
+
+        this.set({ data_modificacao: new Date() });
+
+        next();
+        
+    })
+
+    ProfileSchema.pre('findOneAndUpdate', async function (next) {
+
+        this.set({ data_modificacao: new Date() });
+
+        next();
+        
     })
 
     return mongoose.model('Profile', ProfileSchema)
