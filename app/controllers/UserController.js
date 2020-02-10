@@ -1,4 +1,5 @@
 const Yup = require('yup')
+const bcrypt = require('bcrypt');
 class UserController {
 
     constructor(repository, hateoas) {
@@ -90,6 +91,15 @@ class UserController {
     }
 
     async update(user) {
+
+
+        if(user.senha){
+
+            const hash = await bcrypt.hash(user.senha, 10);
+            user.senha = hash;
+
+            console.log(user.senha, hash);
+        }
 
         return await new Promise((resolve, reject) => {
 
