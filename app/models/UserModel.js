@@ -81,9 +81,14 @@ module.exports = () => {
         next();
     })
 
+
     UserSchema.pre('update', async function (next) {
 
         this.set({ data_modificacao: new Date() });
+
+        const hash = await bcrypt.hash(this.senha, 10);
+
+        this.senha = hash;
 
         next();
         
@@ -94,6 +99,10 @@ module.exports = () => {
 
         this.set({ data_modificacao: new Date() });
 
+        const hash = await bcrypt.hash(this.senha, 10);
+
+        this.senha = hash;
+
         next();
         
     })
@@ -101,6 +110,10 @@ module.exports = () => {
     UserSchema.pre('findOneAndUpdate', async function (next) {
 
         this.set({ data_modificacao: new Date() });
+
+        const hash = await bcrypt.hash(this.senha, 10);
+
+        this.senha = hash;
 
         next();
         
