@@ -26,6 +26,31 @@ module.exports = () => {
 
     })
 
+    UserSchema.pre('update', async function (next) {
+
+        this.set({ data_modificacao: new Date() });
+
+        next();
+        
+    })
+
+
+    UserSchema.pre('updateOne', async function (next) {
+
+        this.set({ data_modificacao: new Date() });
+
+        next();
+        
+    })
+
+    UserSchema.pre('findOneAndUpdate', async function (next) {
+
+        this.set({ data_modificacao: new Date() });
+
+        next();
+        
+    })
+
     return mongoose.model('Course', CourseSchema)
 
 }
