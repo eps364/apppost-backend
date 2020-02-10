@@ -26,7 +26,7 @@ module.exports = () => {
 
     })
 
-    UserSchema.pre('update', async function (next) {
+    CourseSchema.pre('update', async function (next) {
 
         this.set({ data_modificacao: new Date() });
 
@@ -35,7 +35,7 @@ module.exports = () => {
     })
 
 
-    UserSchema.pre('updateOne', async function (next) {
+    CourseSchema.pre('updateOne', async function (next) {
 
         this.set({ data_modificacao: new Date() });
 
@@ -43,7 +43,7 @@ module.exports = () => {
         
     })
 
-    UserSchema.pre('findOneAndUpdate', async function (next) {
+    CourseSchema.pre('findOneAndUpdate', async function (next) {
 
         this.set({ data_modificacao: new Date() });
 

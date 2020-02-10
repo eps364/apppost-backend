@@ -27,7 +27,7 @@ module.exports = () => {
         }
     })
 
-    UserSchema.pre('update', async function (next) {
+    ProfileSchema.pre('update', async function (next) {
 
         this.set({ data_modificacao: new Date() });
 
@@ -36,7 +36,7 @@ module.exports = () => {
     })
 
 
-    UserSchema.pre('updateOne', async function (next) {
+    ProfileSchema.pre('updateOne', async function (next) {
 
         this.set({ data_modificacao: new Date() });
 
@@ -44,7 +44,7 @@ module.exports = () => {
         
     })
 
-    UserSchema.pre('findOneAndUpdate', async function (next) {
+    ProfileSchema.pre('findOneAndUpdate', async function (next) {
 
         this.set({ data_modificacao: new Date() });
 
