@@ -12,8 +12,8 @@ module.exports = app => {
     app.post('/authenticate', (req, res) => {
 
         autcontroller.authenticate(req.body)
-            .then(success => res.status(200).send(success))
-            .catch(error => res.status(500).send(error))
+            .then(success => res.status(200).json(success))
+            .catch(error => res.status(500).json(error))
     })
 
     //Validando token
@@ -28,7 +28,7 @@ module.exports = app => {
                 if (!success)
                     autcontroller.verify(req)
                         .then(success => next())
-                        .catch(error => res.status(500).send(error))
+                        .catch(error => res.status(500).json(error))
             })
     })
 }
