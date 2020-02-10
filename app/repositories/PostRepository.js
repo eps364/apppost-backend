@@ -24,7 +24,17 @@ class PostRepository {
                 {
                     ativo: true
                 })
-                .populate(['curso', 'usuario'])
+                .populate([
+                    { 
+                        path: 'curso', 
+                        select: ['nome','ativo'] 
+                    }, 
+                    {
+                         path: 'usuario', 
+                         select: ['ativo','nome','email']
+                    }
+                 ])
+                .sort({ data_criacao: 'desc' })
                 .then(success => {
 
                     return resolve(success)
@@ -43,7 +53,19 @@ class PostRepository {
                 {
                     ativo: true
                 })
-                .populate(['curso', 'usuario']).skip(parseInt(attributes.inicio)).limit(parseInt(attributes.fim))
+                .populate([
+                    { 
+                        path: 'curso', 
+                        select: ['nome','ativo'] 
+                    }, 
+                    {
+                         path: 'usuario', 
+                         select: ['ativo','nome','email']
+                    }
+                 ])
+                .sort({ data_criacao: 'desc' })
+                .skip(parseInt(attributes.inicio))
+                .limit(parseInt(attributes.fim))
                 .then(success => {
 
                     return resolve(success)
@@ -124,14 +146,24 @@ class PostRepository {
             this._model.find(
                 attributes
             )
-                .populate(['curso', 'usuario'])
-                .then(success => {
+            .populate([
+                { 
+                    path: 'curso', 
+                    select: ['nome','ativo'] 
+                }, 
+                {
+                     path: 'usuario', 
+                     select: ['ativo','nome','email']
+                }
+             ])
+            .sort({ data_criacao: 'desc' })
+            .then(success => {
 
-                    return resolve(success)
-                })
-                .catch(error => {
-                    return reject(error.message)
-                })
+                return resolve(success)
+            })
+            .catch(error => {
+                return reject(error.message)
+            })
 
         })
     }
@@ -145,14 +177,26 @@ class PostRepository {
             this._model.find(
                 attributes.body
             )
-                .populate(['curso', 'usuario']).skip(parseInt(attributes.inicio)).limit(parseInt(attributes.fim))
-                .then(success => {
+            .populate([
+                { 
+                    path: 'curso', 
+                    select: ['nome','ativo'] 
+                }, 
+                {
+                     path: 'usuario', 
+                     select: ['ativo','nome','email']
+                }
+             ])
+            .sort({ data_criacao: 'desc' })
+            .skip(parseInt(attributes.inicio))
+            .limit(parseInt(attributes.fim))
+            .then(success => {
 
-                    return resolve(success)
-                })
-                .catch(error => {
-                    return reject(error.message)
-                })
+                return resolve(success)
+            })
+            .catch(error => {
+                return reject(error.message)
+            })
 
         })
     }
