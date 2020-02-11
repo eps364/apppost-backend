@@ -46,7 +46,14 @@ class PostRepository {
         })
     }
 
-    async findWithPagination(attributes) {
+    async findWithPagination(pagination) {
+
+
+        const { list, page } = pagination;
+
+        const limit = parseInt(list);
+        const skip = limit * (parseInt(page) -1)
+
         return await new Promise((resolve, reject) => {
 
             this._model.find(
@@ -64,8 +71,8 @@ class PostRepository {
                     }
                  ])
                 .sort({ data_criacao: 'desc' })
-                .skip(parseInt(attributes.inicio))
-                .limit(parseInt(attributes.fim))
+                .skip(skip)
+                .limit(limit)
                 .then(success => {
 
                     return resolve(success)
@@ -73,7 +80,6 @@ class PostRepository {
                 .catch(error => {
                     return reject(error.message)
                 })
-
         })
     }
 
@@ -137,15 +143,15 @@ class PostRepository {
         })
     }
 
-    async search(attributes) {
+    async search(filtros) {
 
-        Object.assign(attributes, { ativo: true })
+        Object.assign(filtros, { ativo: true })
+
+        console.log(filtros)
 
         return await new Promise((resolve, reject) => {
 
-            this._model.find(
-                attributes
-            )
+            this._model.find()
             .populate([
                 { 
                     path: 'curso', 
@@ -162,13 +168,21 @@ class PostRepository {
                 return resolve(success)
             })
             .catch(error => {
+
                 return reject(error.message)
+                
             })
 
         })
     }
 
-    async searchWithPagination(attributes) {
+    async searchWithPagination(pagination) {
+
+        const { list, page } = pagination;
+
+        const limit = parseInt(list);
+        const skip = limit * (parseInt(page) -1)
+
 
         Object.assign(attributes.body, { ativo: true })
 
@@ -188,8 +202,8 @@ class PostRepository {
                 }
              ])
             .sort({ data_criacao: 'desc' })
-            .skip(parseInt(attributes.inicio))
-            .limit(parseInt(attributes.fim))
+            .skip(skip)
+            .limit(limit)
             .then(success => {
 
                 return resolve(success)
@@ -199,6 +213,75 @@ class PostRepository {
             })
 
         })
+    }
+
+
+    async findPostByUser(pagination) {
+
+        const { id, list, page } = pagination;
+
+        const limit = parseInt(list);
+        const skip = limit * (parseInt(page) -1)
+
+        return new Promise((resolve, reject) => {
+            
+
+            this._model.find({
+                usuario: id
+            })
+            .populate([
+                { 
+                    path: 'curso', 
+                    select: ['nome','ativo'] 
+                }, 
+                {
+                     path: 'usuario', 
+                     select: ['ativo','nome','email']
+                }
+             ])
+            .sort({ data_criacao: 'desc' })
+            .skip(skip)
+            .limit(limit)
+            .then(success => {
+
+                return resolve(success)
+            })
+            .catch(error => {
+
+                return reject(error.message)
+            })
+        })
+    }
+
+    async listPostsByUser(id){
+
+        return new Promise((resolve, reject) => {
+            
+
+            this._model.find({
+                usuario: id
+            })
+            .populate([
+                { 
+                    path: 'curso', 
+                    select: ['nome','ativo'] 
+                }, 
+                {
+                     path: 'usuario', 
+                     select: ['ativo','nome','email']
+                }
+             ])
+            .sort({ data_criacao: 'desc' })
+            .then(success => {
+
+                return resolve(success)
+            })
+            .catch(error => {
+
+                return reject(error.message)
+            })
+        })
+
     }
 }
 
