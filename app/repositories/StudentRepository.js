@@ -7,7 +7,6 @@ class StudentRepository {
     async create(student) {
 
         const usuario = await this._model.findOne({ email: student.email}, {email: 1});
-        console.log(usuario)
 
         return await new Promise((resolve, reject) => {
 

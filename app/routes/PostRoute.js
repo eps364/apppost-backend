@@ -8,6 +8,7 @@ module.exports = app => {
     app.route('/posts')
         .post((req, res) => {
 
+
             req.body.usuario = req.userId
 
             postcontroller.create(req.body)
