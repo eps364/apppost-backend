@@ -48,8 +48,8 @@ module.exports = app => {
 
                 if (!success)
                     autcontroller.verify(req)
-                    .then(success => next())
-                    .catch(error => res.status(500).send(error))
+                        .then(success => next())
+                        .catch(error => res.status(500).json(error))
             })
     })
 }
