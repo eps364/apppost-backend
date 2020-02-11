@@ -1,3 +1,7 @@
+const {
+    check,
+    validationResult
+} = require('express-validator');
 module.exports = app => {
 
     const postcontroller = new app.controllers.PostController(
@@ -6,16 +10,40 @@ module.exports = app => {
         new app.utils.Hateoas('posts'))
 
     app.route('/posts')
-        .post((req, res) => {
+        .post(
+            [
+                check('titulo')
+                .isLength({
+                    min: 3
+                })
+                .withMessage('Digite um titulo com mais de 3 letras.'),
+
+                check('descricao')
+                .isLength({
+                    min: 3
+                })
+                .withMessage('Digite um titulo com mais de 3 letras.'),
+
+                check('curso')
+                .not().isEmpty()
+                .withMessage('Digite um curso valido.')
+            ],
+            (req, res) => {
+                const errors = validationResult(req);
+                if (!errors.isEmpty()) {
+                    return res.status(422).json({
+                        errors: errors.array()
+                    });
+                }
 
 
-            req.body.usuario = req.userId
+                req.body.usuario = req.userId
 
-            postcontroller.create(req.body)
-                .then(success => res.status(201).json(success))
-                .catch(error => res.status(500).json(error))
+                postcontroller.create(req.body)
+                    .then(success => res.status(201).json(success))
+                    .catch(error => res.status(500).json(error))
 
-        })
+            })
         .get((req, res) => {
 
             if (req.body.search == undefined) {

@@ -15,10 +15,10 @@ module.exports = () => {
             type: String
         },
     
-        ra: {
-            required: false,
-            type: String
-        },
+        // ra: { 
+        //     required: false,
+        //     type: String
+        // },
     
         email: {
             required: true,
