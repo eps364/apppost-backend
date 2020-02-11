@@ -67,6 +67,9 @@ module.exports = app => {
                 .then(success => res.status(200).json(success))
                 .catch(error => res.status(500).json(error))
         })
+
+    
+    
   
 
     app.route('/posts/:id')
@@ -118,9 +121,18 @@ module.exports = app => {
         })
 
 
+    app.route('/posts/user/:id')
+        .get((req, res) => {            
+
+            postcontroller.listPostsByUser(req.params.id)
+                .then(success => res.status(200).json(success))
+                .catch(error => res.status(500).json(error))
+        })
+
+        
 
     app.route('/posts/user/:id/:page/:list')
-        .get((req, res) => {
+        .get((req, res) => {            
 
             const pagination = {
                 list: req.params.list,

@@ -216,7 +216,7 @@ class PostRepository {
     }
 
 
-    async findPostByUser(pagination){
+    async findPostByUser(pagination) {
 
         const { id, list, page } = pagination;
 
@@ -224,6 +224,8 @@ class PostRepository {
         const skip = limit * (parseInt(page) -1)
 
         return new Promise((resolve, reject) => {
+            
+
             this._model.find({
                 usuario: id
             })
@@ -249,6 +251,37 @@ class PostRepository {
                 return reject(error.message)
             })
         })
+    }
+
+    async listPostsByUser(id){
+
+        return new Promise((resolve, reject) => {
+            
+
+            this._model.find({
+                usuario: id
+            })
+            .populate([
+                { 
+                    path: 'curso', 
+                    select: ['nome','ativo'] 
+                }, 
+                {
+                     path: 'usuario', 
+                     select: ['ativo','nome','email']
+                }
+             ])
+            .sort({ data_criacao: 'desc' })
+            .then(success => {
+
+                return resolve(success)
+            })
+            .catch(error => {
+
+                return reject(error.message)
+            })
+        })
+
     }
 }
 

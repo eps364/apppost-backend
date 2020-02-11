@@ -69,11 +69,15 @@ class Hateoas {
 
         if(objeto.length === 0){
 
-            let newObjeto = {}
+            let newObjeto = [];
 
-            newObjeto.mensagem = 'Não há resultados para mostrar',
-            newObjeto.post_url = `${host}/${this._rota}`;
-            newObjeto.get_all_url = `${host}/${this._rota}`;
+            let obj = {
+                mensagem: 'Não há resultados para mostrar',
+                post_url:  `${host}/${this._rota}`,
+                get_all_url: `${host}/${this._rota}`
+            }
+
+            newObjeto.push(obj)
 
             return newObjeto;
 
@@ -106,10 +110,14 @@ class Hateoas {
 
         if(objeto.length === 0){
 
-            let newObjeto = {};
+            let newObjeto = [];
 
-            newObjeto.mensagem = 'Não há resultados para mostrar',
-            newObjeto.post_url = `${host}/${this._rota}`;
+            let obj = {
+                mensagem: 'Não há resultados para mostrar',
+                post_url:  `${host}/${this._rota}`
+            }
+
+            newObjeto.push(obj)
 
             return newObjeto;
         }
@@ -130,7 +138,7 @@ class Hateoas {
     
                 newObjeto.push(obj);
     
-           })    
+           })
            
             return newObjeto;
         }
@@ -138,10 +146,18 @@ class Hateoas {
     }
 
     errorDb(objeto){
-       
-        objeto.mensagem = 'Erro interno no banco de dados'
 
-        return objeto;        
+        let newObjeto = []
+
+        objeto.forEach(obj => {
+
+            obj.mensagem = 'Erro interno no banco de dados'
+
+            newObjeto.push(objeto)
+        })        
+
+        return newObjeto;      
+        
     }
 
 
