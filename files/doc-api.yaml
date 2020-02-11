@@ -1,0 +1,810 @@
+swagger: "2.0"
+info:
+  description: "API de Postagens de mensagens."
+  version: "1.0.1"
+  title: "PostApp Compasso"
+  termsOfService: "http://localhost:3000/api/termo-uso"
+  contact:
+    email: "suporte@email.com"
+
+host: "localhost:3000"
+basePath: "/api"
+
+tags:
+  - name: "Aluno"
+    description: "Rotas relacionada a Alunos"
+
+  - name: "Post"
+    description: "Rotas relacionada a Posts"
+  
+  - name: "Curso"
+    description: "Rotas relacionada a Cursos"
+  - name: "User"
+    description: "Rotas relacionada a Usuários"
+  - name: "Perfil"
+    description: "Rotas relacionada a Perfil"
+    
+schemes:
+- "https"
+- "http"
+
+paths:
+  /aluno:
+    get:
+      tags:
+        - "Aluno"
+      description: "Lista todos os Posts / Pesquisa Posts"
+      summary: "Lista todos os Post / Pesquisa Posts"
+      operationId: "listaPost"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pesquisa Post"
+        required: false
+        schema:
+          $ref: "#/definitions/Student"
+      responses:
+        '200':
+          description: "Lista de todos os Posts completa"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/StudentResponse"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"  
+
+  /posts:
+    get:
+      tags:
+        - "Post"
+      security:
+        - bearerAuth: []
+      description: "Lista todos os Posts / Pesquisa Posts"
+      summary: "Lista todos os Post / Pesquisa Posts"
+      operationId: "listaPost"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pesquisa Post"
+        required: false
+        schema:
+          $ref: "#/definitions/Post"
+      responses:
+        '200':
+          description: "Lista de todos os Posts completa"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Post"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+      
+    post:
+      tags:
+      - "Post"
+      security:
+        - bearerAuth: []
+      summary: "Cadastra um novo Post"
+      description: "Cadastra um novo Post"
+      operationId: "cadastraPost"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Cadastra um novo Post"
+        required: true
+        schema:
+          $ref: "#/definitions/Post"
+      responses:
+        '201': 
+          description: "Post cadastrado com sucesso"
+          schema:
+            $ref: "#/definitions/Post"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+
+  '/posts/{id}':
+
+    get:
+      tags:
+        - "Post"
+      security:
+        - bearerAuth: []
+      description: "Lista um Post"
+      summary: "Lista um Post"
+      operationId: "procuraPost"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Id do Post para a procura"
+        required: true
+        schema:
+          $ref: "#/definitions/Post"
+      responses:
+        '200':
+          description: "Post localizado com sucesso"
+          schema:
+            $ref: "#/definitions/Post"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+    put:
+      tags:
+      - "Post"
+      security:
+        - bearerAuth: []
+      summary: "Atualiza um Post"
+      description: ""
+      operationId: "atualizaPost"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Id do Post para a alteração"
+        required: true
+        schema:
+          $ref: "#/definitions/Post"
+      responses:
+        '204':
+          description: "Post Alterado com sucesso"
+          schema:
+            $ref: "#/definitions/Post"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+    delete:
+      tags:
+      - "Post"
+      security:
+        - bearerAuth: []
+      summary: "Excluir um Post"
+      description: ""
+      operationId: "excluiPost"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Id do Post para a exclusão"
+        required: true
+        schema:
+          $ref: "#/definitions/Post"
+      responses:
+        '204':
+          description: "Post excluido com sucesso"
+          schema:
+            $ref: "#/definitions/Post"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+############################ Cursos
+  /curso:
+    get:
+      tags:
+        - "Curso"
+      description: "Lista todos os Cursos"
+      summary: "Lista todos os Cursos"
+      operationId: "listaCurso"
+      responses:
+        '200':
+          description: "Lista de todos os Cursos completa"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Curso"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+        
+    post:
+      tags:
+      - "Curso"
+      security:
+        - bearerAuth: []
+      summary: "Cadastra um novo Curso"
+      description: "Cadastra um novo Curso"
+      operationId: "cadastraCurso"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Cadastra um novo Curso"
+        required: true
+        schema:
+          $ref: "#/definitions/Curso"
+      responses:
+        '201': 
+          description: "Curso cadastrado com sucesso"
+          schema:
+            $ref: "#/definitions/Curso"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+
+  '/curso/{id}':
+    get:
+      tags:
+        - "Curso"
+      security:
+        - bearerAuth: []
+      description: "Lista um Curso"
+      summary: "Lista um Curso"
+      operationId: "procuraCurso"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Id do Curso para a procura"
+        required: true
+        schema:
+          $ref: "#/definitions/Curso"
+      responses:
+        '200':
+          description: "Curso localizado com sucesso"
+          schema:
+            $ref: "#/definitions/Curso"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+    put:
+      tags:
+      - "Curso"
+      security:
+        - bearerAuth: []
+      summary: "Atualiza um Curso"
+      description: ""
+      operationId: "atualizaCurso"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Id do Curso para a alteração"
+        required: true
+        schema:
+          $ref: "#/definitions/Curso"
+      responses:
+        '204':
+          description: "Curso Alterado com sucesso"
+          schema:
+            $ref: "#/definitions/Curso"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+    delete:
+      tags:
+      - "Curso"
+      security:
+        - bearerAuth: []
+      summary: "Excluir um Curso"
+      description: ""
+      operationId: "excluiCurso"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Id do Curso para a exclusão"
+        required: true
+        schema:
+          $ref: "#/definitions/Curso"
+      responses:
+        '204':
+          description: "Curso excluido com sucesso"
+          schema:
+            $ref: "#/definitions/Curso"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+############################# User
+  /user:
+    get:
+      tags:
+        - "User"
+      security:
+        - bearerAuth: []
+      description: "Lista todos os Users"
+      summary: "Lista todos os User"
+      operationId: "listaUser"
+      responses:
+        '200':
+          description: "Lista de todos os Users completa"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+        
+    post:
+      tags:
+      - "User"
+      security:
+        - bearerAuth: []
+      summary: "Cadastra um novo User"
+      description: "Cadastra um novo User"
+      operationId: "cadastraUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Cadastra um novo User"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        '201': 
+          description: "User cadastrado com sucesso"
+          schema:
+            $ref: "#/definitions/User"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+
+  '/user/{id}':
+
+    get:
+      tags:
+        - "User"
+      security:
+        - bearerAuth: []
+      description: "Lista um User"
+      summary: "Lista um User"
+      operationId: "procuraUser"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Id do User para a procura"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: "User localizado com sucesso"
+          schema:
+            $ref: "#/definitions/User"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+    put:
+      tags:
+      - "User"
+      security:
+        - bearerAuth: []
+      summary: "Atualiza um User"
+      description: ""
+      operationId: "atualizaUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Id do User para a alteração"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        '204':
+          description: "User Alterado com sucesso"
+          schema:
+            $ref: "#/definitions/User"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+    delete:
+      tags:
+      - "User"
+      security:
+        - bearerAuth: []
+      summary: "Excluir um User"
+      description: ""
+      operationId: "excluiUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Id do User para a exclusão"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        '204':
+          description: "User excluido com sucesso"
+          schema:
+            $ref: "#/definitions/User"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+#################### Perfil
+  /perfil:
+    get:
+      tags:
+        - "Perfil"
+      security:
+        - bearerAuth: []
+      description: "Lista todos os Perfil"
+      summary: "Lista todos os Perfil"
+      operationId: "listaPerfil"
+      responses:
+        '200':
+          description: "Lista de todos os Perfils completa"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Perfil"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+        
+    post:
+      tags:
+      - "Perfil"
+      security:
+        - bearerAuth: []
+      summary: "Cadastra um novo Perfil"
+      description: "Cadastra um novo Perfil"
+      operationId: "cadastraPerfil"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Cadastra um novo Perfil"
+        required: true
+        schema:
+          $ref: "#/definitions/Perfil"
+      responses:
+        '201': 
+          description: "Perfil cadastrado com sucesso"
+          schema:
+            $ref: "#/definitions/Perfil"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+
+  '/Perfil/{id}':
+
+    get:
+      tags:
+        - "Perfil"
+      security:
+        - bearerAuth: []
+      description: "Lista um Perfil"
+      summary: "Lista um Perfil"
+      operationId: "procuraPerfil"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Id do Perfil para a procura"
+        required: true
+        schema:
+          $ref: "#/definitions/Perfil"
+      responses:
+        '200':
+          description: "Perfil localizado com sucesso"
+          schema:
+            $ref: "#/definitions/Perfil"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+    put:
+      tags:
+      - "Perfil"
+      security:
+        - bearerAuth: []
+      summary: "Atualiza um Perfil"
+      description: ""
+      operationId: "atualizaPerfil"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Id do Perfil para a alteração"
+        required: true
+        schema:
+          $ref: "#/definitions/Perfil"
+      responses:
+        '204':
+          description: "Perfil Alterado com sucesso"
+          schema:
+            $ref: "#/definitions/Perfil"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+    delete:
+      tags:
+      - "Perfil"
+      security:
+        - bearerAuth: []
+      summary: "Excluir um Perfil"
+      description: ""
+      operationId: "excluiPerfil"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Id do Perfil para a exclusão"
+        required: true
+        schema:
+          $ref: "#/definitions/Perfil"
+      responses:
+        '204':
+          description: "Perfil excluido com sucesso"
+          schema:
+            $ref: "#/definitions/Perfil"
+        '400':
+          description: "Verifique a sintaxe"
+        '404':
+          description: "Recurso está indisponível temporariamente"
+        '500':
+          description: "Erro interno encontrado"
+
+definitions:
+  Student:
+    type: "object"
+    properties: 
+      nome:
+        type: "string"
+        example: "José da Silva"
+      cpf:
+        type: "string"
+        minLength: 11
+        maxLength: 11
+        example: 01234567890
+      email:
+        type: "string"
+        example: "jose@email.com.br"
+      senha:  
+        type: "string"
+        format: "password"
+        example: "senha123"
+
+  StudentResponse:
+    type: "object"
+    properties: 
+      nome:
+        type: "string"
+        example: "José da Silva"
+      cpf:
+        type: "string"
+        minLength: 11
+        maxLength: 11
+        example: 01234567890
+      email:
+        type: "string"
+        example: "jose@email.com.br"
+
+
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      nome:
+        type: "string"
+        example: "José da Silva"
+      cpf:
+        type: "string"
+        minLength: 11
+        maxLength: 11
+        example: 01234567890
+      email:
+        type: "string"
+        example: "jose@email.com.br"
+      senha:  
+        type: "string"
+        format: "password"
+        example: "senha123"
+      perfil:
+        type: "array"
+        items: 
+          $ref: "#/definitions/Perfil"
+      curso: 
+        type: "array"
+        items: 
+          $ref: "#/definitions/Curso"
+      data_criacao:
+        type: "string"
+        format: "date-time"
+      data_modificacao:
+        type: "string"
+        format: "date-time"
+      desligado:
+        type: "boolean"
+        default: false
+      ativo:
+        type: "boolean"
+        default: true
+
+  Post:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      titulo:
+        type: "string"
+        example: "Resumo da Semana"
+      descricao:
+        type: "string"
+        example: "Nesta semana os eventos serão os seguintes ..."
+      data_evento:
+        type: "string"
+        format: "date-time"
+      usuario:
+        $ref: "#/definitions/User"
+      data_criacao:
+        type: "string"
+        format: "date-time"
+      data_modificacao:
+        type: "string"
+        format: "date-time"
+      ativo:
+        type: "boolean"
+        default: true
+
+  Curso:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      nome:
+        type: "string"
+        example: "Analise e desenvolvimento de sistemas"
+      data_criacao:
+        type: "string"
+        format: "date-time"
+      data_modificacao:
+        type: "string"
+        format: "date-time"
+      ativo:
+        type: "boolean"
+        default: true  
+
+  Perfil:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      nome:
+        type: "string"
+        example: "Administrador"
+      data_criacao:
+        type: "string"
+        format: "date-time"
+      data_modificacao:
+        type: "string"
+        format: "date-time"
+      ativo:
+        type: "boolean"
+        default: true
+
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+
+
+      

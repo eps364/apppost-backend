@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 module.exports = () => {
 
@@ -18,7 +18,7 @@ module.exports = () => {
             type: Date,
             default: Date.now
         },
-        
+
         data_modificacao: {
             type: Date,
             required: false
@@ -28,27 +28,33 @@ module.exports = () => {
 
     CourseSchema.pre('update', async function (next) {
 
-        this.set({ data_modificacao: new Date() });
+        this.set({
+            data_modificacao: new Date()
+        });
 
         next();
-        
+
     })
 
 
     CourseSchema.pre('updateOne', async function (next) {
 
-        this.set({ data_modificacao: new Date() });
+        this.set({
+            data_modificacao: new Date()
+        });
 
         next();
-        
+
     })
 
     CourseSchema.pre('findOneAndUpdate', async function (next) {
 
-        this.set({ data_modificacao: new Date() });
+        this.set({
+            data_modificacao: new Date()
+        });
 
         next();
-        
+
     })
 
     return mongoose.model('Course', CourseSchema)

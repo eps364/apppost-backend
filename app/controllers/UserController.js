@@ -1,4 +1,3 @@
-const Yup = require('yup')
 const bcrypt = require('bcrypt');
 class UserController {
 

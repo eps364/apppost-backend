@@ -131,7 +131,7 @@ class UserRepository {
                 }).select('+senha')
                 .then(success => {
 
-                    if (!success)
+              if (!success)
                         return reject({ mensagem: 'Usuario não cadastrado' })
 
                     if (success.desligado === true)
@@ -156,7 +156,6 @@ class UserRepository {
                     });
                 })
                 .catch(error => {
-
                     return reject(error.message)
                     
                 })
