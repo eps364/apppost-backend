@@ -16,8 +16,10 @@ module.exports = app => {
     app.post('/authenticate', [
             check('email')
             .isEmail()
+            .exists()
             .withMessage('Digite um email no formato correto.'),
             check('senha')
+            .exists()
             .isLength({
                 min: 4
             })
