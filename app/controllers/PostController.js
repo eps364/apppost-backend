@@ -46,26 +46,6 @@ class PostController {
         })
     }
 
-    async findWithPagination(attributes) {
-
-        return await new Promise((resolve, reject) => {
-
-            this._repository.findWithPagination(attributes)
-                .then(success => {            
-                    
-                    let objeto = this._hateoas.findAll(success);
-
-                    return resolve(objeto)
-                })
-                .catch(error => {
-
-                    let objeto  = this._hateoas.errorDb({ error })
-
-                    return reject({objeto})
-                })
-        })
-    }
-
     async delete(id) {
 
         return await new Promise((resolve, reject) => {
@@ -128,16 +108,22 @@ class PostController {
         })
     }
 
-    async search(attributes) {
+
+
+    /**
+     *  Listar Todos os ´posts Com paginação
+     */
+
+    async findWithPagination(attributes) {
 
         return await new Promise((resolve, reject) => {
 
-            this._repository.search(attributes)
-                .then(success => {
-
+            this._repository.findWithPagination(attributes)
+                .then(success => {            
+                    
                     let objeto = this._hateoas.findAll(success);
 
-                    return resolve(objeto)
+                    return resolve({objeto})
                 })
                 .catch(error => {
 
@@ -148,6 +134,60 @@ class PostController {
         })
     }
 
+    /**
+     * Listar Pots por Usuario
+     */
+
+    // com paginação
+    async findPostByUser(body){
+
+        return await new Promise((resolve, reject) => {
+
+            this._repository.findPostByUser(body)
+                .then(success => {
+
+                    let objeto = this._hateoas.findAll(success);
+
+                    return resolve({objeto})
+                })
+                .catch(error => {
+
+                    let objeto = this._hateoas.errorDb({ error });
+
+                    return reject({objeto})
+                })
+        })
+    }
+
+
+
+
+    /**
+     * Metodos de pesquisa* 
+     */
+
+    // sem paginação
+    async search(filtros) {
+
+        return await new Promise((resolve, reject) => {
+
+            this._repository.search(filtros)
+                .then(success => {
+
+                    let objeto = this._hateoas.findAll(success);
+
+                    return resolve({objeto})
+                })
+                .catch(error => {
+
+                    let objeto  = this._hateoas.errorDb({ error })
+
+                    return reject({objeto})
+                })
+        })
+    }
+
+    // com paginação
     async searchWithPagination(attributes) {
 
         return await new Promise((resolve, reject) => {
@@ -157,7 +197,7 @@ class PostController {
 
                     let objeto = this._hateoas.findAll(success);
 
-                    return resolve(objeto)
+                    return resolve({objeto})
                 })
                 .catch(error => {
 

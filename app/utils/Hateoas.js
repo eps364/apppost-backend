@@ -138,7 +138,7 @@ class Hateoas {
     }
 
     errorDb(objeto){
-        
+       
         objeto.mensagem = 'Erro interno no banco de dados'
 
         return objeto;        

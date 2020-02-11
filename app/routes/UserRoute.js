@@ -78,11 +78,17 @@ module.exports = app => {
                 .catch(error => res.status(500).json(error))
         })
         .put((req, res) => {
+                const errors = validationResult(req);
+                if (!errors.isEmpty()) {
+                    return res.status(422).json({
+                        errors: errors.array()
+                    });
+                }
 
-            req.body.id = req.params.id;
+                req.body.id = req.params.id;
 
-            usercontroller.update(req.body)
-                .then(success => res.status(200).json(success))
-                .catch(error => res.status(500).json(error))
-        })
+                usercontroller.update(req.body)
+                    .then(success => res.status(200).json(success))
+                    .catch(error => res.status(500).json(error))
+            })
 }

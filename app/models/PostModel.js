@@ -14,6 +14,11 @@ module.exports = () => {
             required: true
         },
 
+        link: {
+            type: String,
+            required: false
+        },
+
         usuario: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
@@ -26,22 +31,25 @@ module.exports = () => {
             required: true
         }],
 
+        data_evento: {
+            type: Date,
+            required: true
+        },
+
+        ativo: {
+            type: Boolean,
+            required: true
+        },
+
         data_criacao: {
             type: Date,
             default: Date.now,
             required: true
         },
+        
         data_modificacao: {
             type: Date,
             required: false
-        },
-        data_evento: {
-            type: Date,
-            required: true
-        },
-        ativo: {
-            type: Boolean,
-            required: true
         }
     })
 
