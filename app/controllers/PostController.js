@@ -125,7 +125,6 @@ class PostController {
 
                     return reject({objeto})
                 })
-
         })
     }
 
@@ -166,7 +165,6 @@ class PostController {
 
                     return reject({objeto})
                 })
-
         })
     }
 }

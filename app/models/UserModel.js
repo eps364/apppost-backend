@@ -1,7 +1,6 @@
 // user Model
-
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const mongoose =require('mongoose')
+const bcrypt =require('bcrypt')
 
 module.exports = () => {
 
@@ -81,6 +80,7 @@ module.exports = () => {
         next();
     })
 
+
     UserSchema.pre('update', async function (next) {
 
         this.set({ data_modificacao: new Date() });
@@ -98,10 +98,10 @@ module.exports = () => {
         
     })
 
-    UserSchema.pre('findOneAndUpdate', async function (next) {
+    UserSchema.pre('findOneAndUpdate', async function (next) {        
 
         this.set({ data_modificacao: new Date() });
-
+      
         next();
         
     })

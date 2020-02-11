@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose =require('mongoose')
 
 module.exports = () => {
   
@@ -17,7 +17,7 @@ module.exports = () => {
 
         data_criacao: {
             type: Date,
-            required: false,
+            required: true,
             dafault: Date.now
         },
 

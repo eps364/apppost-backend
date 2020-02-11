@@ -1,8 +1,9 @@
 class AuthenticateController {
 
-    constructor(repository, jwt) {
+    constructor(repository, jwt, hateoas) {
         this._repository = repository
         this._jwt = jwt
+        this._hateoas = hateoas
     }
 
     async authenticate(user) {       
@@ -27,7 +28,7 @@ class AuthenticateController {
                     
                     let objeto  = this._hateoas.errorDb({ error })
 
-                    return reject({objeto})
+                    return reject(objeto)
                 })
         })
 
