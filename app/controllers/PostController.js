@@ -139,11 +139,11 @@ class PostController {
      */
 
     // com paginação
-    async findPostByUser(body){
+    async findPostByUser(pagination){
 
         return await new Promise((resolve, reject) => {
 
-            this._repository.findPostByUser(body)
+            this._repository.findPostByUser(pagination)
                 .then(success => {
 
                     let objeto = this._hateoas.findAll(success);
@@ -157,6 +157,27 @@ class PostController {
                     return reject({objeto})
                 })
         })
+    }
+
+    async listPostsByUser(id){
+
+        return await new Promise((resolve, reject) => {
+
+            this._repository.listPostsByUser(id)
+                .then(success => {
+
+                    let objeto = this._hateoas.findAll(success);
+
+                    return resolve({objeto})
+                })
+                .catch(error => {
+
+                    let objeto = this._hateoas.errorDb({ error });
+
+                    return reject({objeto})
+                })
+        })
+
     }
 
 
