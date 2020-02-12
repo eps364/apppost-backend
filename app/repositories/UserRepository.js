@@ -123,11 +123,6 @@ class UserRepository {
 
             this._model.findOne({
                     email: user.email
-                }, {
-                    _id: 1,
-                    senha: 1,
-                    ativo: 1,
-                    desligado: 1
                 }).select('+senha')
                 .then(success => {
 
@@ -142,15 +137,13 @@ class UserRepository {
                     
 
                     bcrypt.compare(user.senha, success.senha, (err, res) => { 
+                        success.senha=""
                        
                         if (!res)
                             return reject({ mensagem: 'E-mail/Senha Inválidos' })
 
                         if (res)
-                            return resolve({
-                                id: success.id
-                            })
-
+                            return resolve({success})
                         if (err)
                             return reject(err)
                     });
