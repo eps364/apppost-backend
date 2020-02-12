@@ -36,6 +36,7 @@ module.exports = app => {
 
             autcontroller.authenticate(req.body)
                 .then(success => res.status(200).send(success))
+                .then(success => console.log(success))
                 .catch(error => res.status(500).send(error))
         })
 

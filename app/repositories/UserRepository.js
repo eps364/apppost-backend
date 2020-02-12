@@ -122,8 +122,11 @@ class UserRepository {
         return await new Promise((resolve, reject) => {
 
             this._model.findOne({
-                    email: user.email
-                }).select('+senha')
+                    email: user.email,
+                    ativo: true,
+                    desligado: false
+                })
+                .select('+senha')
                 .then(success => {
 
               if (!success)
@@ -143,7 +146,14 @@ class UserRepository {
                             return reject({ mensagem: 'E-mail/Senha Inválidos' })
 
                         if (res)
-                            return resolve({success})
+                            return resolve({
+                                id: success.id,
+                                nome: success.nome,
+                                email: success.email,
+                                perfil: success.perfil,
+                                curso: success.curso
+
+                            })
                         if (err)
                             return reject(err)
                     });

@@ -20,13 +20,17 @@ class AuthenticateController {
                     return resolve({
                         auth: true,
                         token: token,
-                        id: success.id
+                        id: success.id,
+                        nome: success.nome,
+                        email: success.email,
+                        perfil: success.perfil,
+                        curso: success.curso,
                     })
 
                 })
                 .catch(error => {
                     
-                    let objeto  = this._hateoas.errorDb({ error })
+                    let objeto  = this._hateoas.error({ error })
 
                     return reject(objeto)
                 })
