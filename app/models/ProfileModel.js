@@ -17,7 +17,7 @@ module.exports = () => {
 
         data_criacao: {
             type: Date,
-            required: true,
+
             dafault: Date.now
         },
 
