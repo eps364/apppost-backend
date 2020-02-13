@@ -157,7 +157,14 @@ class UserRepository {
 
                         if (res)
                             return resolve({
-                                success
+
+                                    id: success.id,
+                                    nome: success.nome,
+                                    email: success.email,
+                                    perfil: success.perfil,
+                                    curso: success.curso
+
+
                             })
                         if (err)
                             return reject({
