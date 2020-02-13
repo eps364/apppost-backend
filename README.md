@@ -79,48 +79,79 @@ Rodando a aplicação em modo produção
 ## ROTAS
 
 A Rota para autenticação
-/Authenticate
 
-Dados enviados no Body:
-> ``json
-  {
-    "email": "t5@t5.com",
-    "senha": "1234567"
-  }
-  ``
-Resposta:
-``json
-{
-  "auth": true,
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4MDAxNzJkMzdiMyIsInVzdWFyaW8iOnsiYXRpdm8iOnRydWUsImRlc2xpZ2FkbyI6ZmFsc2UsIl9pZCI6IjVlNDQ1Y2ZkMDZhZDA4MDAxNzJkMzdiMyIsIm5vbWUiOiJ0ZXN0ZTUiLCJjcGYiOiIxMjM0NTY3ODkwOSIsImVtYWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZXJmaWwiOiI1ZTQxODJiN2Y5ODY5MDAwMTc5ZTJkYTgiLCJjdXJzbyI6W3siX2lkIjoiNWU0NDVjZmQwNmFkMDgwMDE3MmQzN2I1IiwiY3Vyc29faWQiOiI1ZTNkNjcxMTBlMjFlYzAwMTc4ZmFmNmYiLCJjYXJhY3RlcmlzdGljYSI6IkFsdW5vIn0seyJfaWQiOiI1ZTQ0NWNmZDA2YWQwODAwMTcyZDM3YjQiLCJjdXJzb19pZCI6IjVlNDE4ZmNhZjk4NjkwMDAxNzllMmRiMSIsImNhcmFjdGVyaXN0aWNhIjoiSW50ZXJlc3NlIn1dLCJkYXRhX2NyaWFjYW8iOiIyMDIwLTAyLTEyVDIwOjE1OjU3LjE1MVoiLCJfX3YiOjAsImRhdGFfbW9kaWZpY2FjYW8iOiIyMDIwLTAyLTEyVDIwOjE2OjM4Ljk3NFoifSwiaWF0IjoxNTgxNjE4NzQwLCJleHAiOjE1ODE3MDMzNDB9.K09vwyGvWL5uib6ky_eSvIF6URsr32Lo861D18oItro",
-  "id": "5e445cfd06ad0800172d37b3",
-  "usuario": {
+
+
+### /Authenticate
+
+#### Dados enviados no Body:
+
+    {
+        "email": "t5@t5.com",
+        "senha": "1234567"
+    }
+
+#### Dados enviados no Header
+    vazio
+
+#### Resposta:
+
+    {
+    "auth": true,
+    "token": "eyJhbGcisInR5cCI6IkpXVCJ9.eyJpZCI6IZmNhZjk4NjkwMDAxNzllMmRiMSIsImNhcmFjdGVyaXN0aWNhIjoiSW50ZXJlc3NlIn1dLCJkYXRhX2NyajU3LjE1M2FjYW8iOiIyMDIwLTAyLTEyVDIwOjE2OjM4Ljk3NFoifSwiaWF0IjoxNTgxNjE4NzQwLCJleHAiOjE1ODE3MDMzNDB9.K09vwyGvWL5uib6ky_eSvIF6URsr32Lo861D18oItro",
     "id": "5e445cfd06ad0800172d37b3",
     "usuario": {
-      "ativo": true,
-      "desligado": false,
-      "_id": "5e445cfd06ad0800172d37b3",
-      "nome": "teste5",
-      "cpf": "12345678909",
-      "email": "t5@t5.com",
-      "senha": "",
-      "perfil": "5e4182b7f9869000179e2da8",
-      "curso": [
-        {
-          "_id": "5e445cfd06ad0800172d37b5",
-          "curso_id": "5e3d67110e21ec00178faf6f",
-          "caracteristica": "Aluno"
-        },
-        {
-          "_id": "5e445cfd06ad0800172d37b4",
-          "curso_id": "5e418fcaf9869000179e2db1",
-          "caracteristica": "Interesse"
+        "id": "5e445cfd06ad0800172d37b3",
+        "usuario": {
+        "ativo": true,
+        "desligado": false,
+        "_id": "5e445cfd06ad0800172d37b3",
+        "nome": "teste5",
+        "cpf": "12345678909",
+        "email": "t5@t5.com",
+        "senha": "",
+        "perfil": "5e4182b7f9869000179e2da8",
+        "curso": [
+            {
+            "_id": "5e445cfd06ad0800172d37b5",
+            "curso_id": "5e3d67110e21ec00178faf6f",
+            "caracteristica": "Aluno"
+            },
+            {
+            "_id": "5e445cfd06ad0800172d37b4",
+            "curso_id": "5e418fcaf9869000179e2db1",
+            "caracteristica": "Interesse"
+            }
+        ],
+        "data_criacao": "2020-02-12T20:15:57.151Z",
+        "__v": 0,
+        "data_modificacao": "2020-02-12T20:16:38.974Z"
         }
-      ],
-      "data_criacao": "2020-02-12T20:15:57.151Z",
-      "__v": 0,
-      "data_modificacao": "2020-02-12T20:16:38.974Z"
     }
-  }
-}
-``
+    }
+
+####  Possiveis erros:
+
+    [
+        {
+            "error": {
+                "mensagem": "Usuario não cadastrado",
+                "mensagem": "E-mail/Senha Inválidos"
+                },
+            "texto": "Erro interno no banco de dados",
+        }
+    ]
+
+####  ou
+
+    {
+        "errors": [
+            {
+                "value": "123",
+                "msg": "Senha incompativel, digite outra e maior que 4 digitos",
+                "param": "senha",
+                "location": "body"
+            }
+        ]
+    }
+
