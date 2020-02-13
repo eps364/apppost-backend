@@ -23,6 +23,7 @@ class AuthenticateController {
                         id: success.id,
                         nome: success.nome,
                         email: success.email,
+                        cpf:success.cpf,
                         perfil: success.perfil,
                         curso: success.curso,
                     })
