@@ -78,14 +78,12 @@ Rodando a aplicação em modo produção
 
 ## ROTAS
 
-A Rota para autenticação
-
-
-
 ### /Authenticate
+>##### Method: POST /Autenticate
+
+Rota utilizada para fazer autenticação para as, os dados enviados pelo Body retorna um tokem para ser usado nas funções.
 
 #### Dados enviados no Body:
-
     {
         "email": "t5@t5.com",
         "senha": "1234567"
@@ -95,43 +93,41 @@ A Rota para autenticação
     vazio
 
 #### Resposta:
-
     {
-    "auth": true,
-    "token": "eyJhbGcisInR5cCI6IkpXVCJ9.eyJpZCI6IZmNhZjk4NjkwMDAxNzllMmRiMSIsImNhcmFjdGVyaXN0aWNhIjoiSW50ZXJlc3NlIn1dLCJkYXRhX2NyajU3LjE1M2FjYW8iOiIyMDIwLTAyLTEyVDIwOjE2OjM4Ljk3NFoifSwiaWF0IjoxNTgxNjE4NzQwLCJleHAiOjE1ODE3MDMzNDB9.K09vwyGvWL5uib6ky_eSvIF6URsr32Lo861D18oItro",
-    "id": "5e445cfd06ad0800172d37b3",
-    "usuario": {
+        "auth": true,
+        "token": "eyJhbGcisInR5cCI6IkpXVCJ9.eyJpZCI6IZmNhZjk4NjkwMDAxNzllMmRiMSIsImNhcmFjdGVyaXN0aWNhIjoiSW50ZXJlc3NlIn1dLCJkYXRhX2NyajU3LjE1M2FjYW8iOiIyMDIwLTAyLTEyVDIwOjE2OjM4Ljk3NFoifSwiaWF0IjoxNTgxNjE4NzQwLCJleHAiOjE1ODE3MDMzNDB9.K09vwyGvWL5uib6ky_eSvIF6URsr32Lo861D18oItro",
         "id": "5e445cfd06ad0800172d37b3",
         "usuario": {
-        "ativo": true,
-        "desligado": false,
-        "_id": "5e445cfd06ad0800172d37b3",
-        "nome": "teste5",
-        "cpf": "12345678909",
-        "email": "t5@t5.com",
-        "senha": "",
-        "perfil": "5e4182b7f9869000179e2da8",
-        "curso": [
-            {
-            "_id": "5e445cfd06ad0800172d37b5",
-            "curso_id": "5e3d67110e21ec00178faf6f",
-            "caracteristica": "Aluno"
-            },
-            {
-            "_id": "5e445cfd06ad0800172d37b4",
-            "curso_id": "5e418fcaf9869000179e2db1",
-            "caracteristica": "Interesse"
+            "id": "5e445cfd06ad0800172d37b3",
+            "usuario": {
+            "ativo": true,
+            "desligado": false,
+            "_id": "5e445cfd06ad0800172d37b3",
+            "nome": "teste5",
+            "cpf": "12345678909",
+            "email": "t5@t5.com",
+            "senha": "",
+            "perfil": "5e4182b7f9869000179e2da8",
+            "curso": [
+                {
+                    "_id": "5e445cfd06ad0800172d37b5",
+                    "curso_id": "5e3d67110e21ec00178faf6f",
+                    "caracteristica": "Aluno"
+                },
+                {
+                    "_id": "5e445cfd06ad0800172d37b4",
+                    "curso_id": "5e418fcaf9869000179e2db1",
+                    "caracteristica": "Interesse"
+                }
+            ],
+            "data_criacao": "2020-02-12T20:15:57.151Z",
+            "__v": 0,
+            "data_modificacao": "2020-02-12T20:16:38.974Z"
             }
-        ],
-        "data_criacao": "2020-02-12T20:15:57.151Z",
-        "__v": 0,
-        "data_modificacao": "2020-02-12T20:16:38.974Z"
         }
     }
-    }
 
-####  Possiveis erros:
-
+####  Possiveis erros, exemplos abaixo:
     [
         {
             "error": {
@@ -143,7 +139,6 @@ A Rota para autenticação
     ]
 
 ####  ou
-
     {
         "errors": [
             {
@@ -155,3 +150,204 @@ A Rota para autenticação
         ]
     }
 
+
+### /perfil
+>##### Method: POST /perfil
+
+
+#### Dados enviados no Body:
+    {
+        "nome": "Admin"
+    }
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+        "objeto": {
+            "ativo": true,
+            "_id": "5e45a46c84f6260017d4f98b",
+            "nome": "Secretaria",
+            "__v": 0,
+            "get_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+            "update_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+            "delete_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+            "post_url": "https://localhost/perfil",
+            "get_all_url": "https://localhost/perfil"
+        }
+    }
+
+####  Possiveis erros, exemplos abaixo:
+    {
+    "errors":
+        [
+            {
+                "value": "A",
+                "msg": "O perfil esta invalido, preencha com mais de 3 letras",
+                "param": "nome",
+                "location": "body"
+            }
+        ]
+    }
+
+### /perfil
+>##### Method: GET /perfil/:id
+
+
+#### Dados enviados no Body:
+    vazio
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+    "objeto": [
+            {
+                "ativo": true,
+                "_id": "5e45a46c84f6260017d4f98b",
+                "nome": "Secretaria",
+                "__v": 0,
+                "get_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+                "update_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+                "delete_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+                "post_url": "https://localhost/perfil",
+                "get_all_url": "https://localhost/perfil"
+            }
+        ]
+    }
+
+####  Possiveis erros, exemplos abaixo:
+    {
+    "errors":
+        [
+            {
+                "value": "A",
+                "msg": "O perfil esta invalido, preencha com mais de 3 letras",
+                "param": "nome",
+                "location": "body"
+            }
+        ]
+    }
+
+### /perfil
+>##### Method: PUT /perfil/:id
+
+#### Dados enviados no Body:
+    {
+        "perfil": "{{ perfil  }}",
+        "nome": "Novo nome do perfil",
+        "ativo": true,
+        "desligado":false
+    }
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+        "objeto": {
+            "ativo": true,
+            "_id": "5e45a46c84f6260017d4f98b",
+            "nome": "Novo nome do perfil",
+            "__v": 0,
+            "data_modificacao": "2020-02-13T19:41:38.685Z",
+            "mensagem": "Registro alterado com sucesso",
+            "get_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+            "update_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+            "delete_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+            "post_url": "https://localhost/perfil",
+            "get_all_url": "https://localhost/perfil"
+        }
+    }
+
+
+####  Possiveis erros, exemplos abaixo:
+    {
+        "errors": [
+            {
+                "msg": "Preencha com mais de 3 letras",
+                "param": "nome",
+                "location": "body"
+            },
+            {
+                "msg": "Preencha com true ou false",
+                "param": "ativo",
+                "location": "body"
+            }
+        ]
+    }
+
+
+### /perfil
+>##### Method: DELETE /perfil/:id
+
+
+#### Dados enviados no Body:
+    vazio
+
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+  "objeto": {
+            "mensagem": "Registro excluido com sucesso",
+            "post_url": "https://localhost/perfil",
+            "get_all_url": "https://localhost/perfil"
+        }
+    }
+
+####  Possiveis erros, exemplos abaixo:
+    {
+    "objeto": [
+            {
+            "error": "Cast to ObjectId failed for value \"dasdsa\" at path \"_id\" for model \"Profile\"",
+            "texto": "Erro interno no banco de dados"
+            }
+        ]
+    }
+
+
+### /perfil
+>##### Method: GET /perfil
+
+
+#### Dados enviados no Body:
+    vazio
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+        "objeto": [
+            {
+                "ativo": true,
+                "_id": "5e3c4ea75ff10d0017c4b284",
+                "nome": "Diretor",
+                "data_criacao": "2020-01-23T18:49:11.165Z",
+                "__v": 0,
+                "data_modificacao": "2020-02-10T13:52:33.297Z",
+                "get_url": "https://localhost/perfil/5e3c4ea75ff10d0017c4b284",
+                "update_url": "https://localhost/perfil/5e3c4ea75ff10d0017c4b284",
+                "delete_url": "https://localhost/perfil/5e3c4ea75ff10d0017c4b284",
+                "post_url": "https://localhost/perfil",
+                "get_all_url": "https://localhost/perfil"
+            },
+            {
+                "ativo": true,
+                "_id": "5e3c4eb05ff10d0017c4b285",
+                "nome": "Professor",
+                "data_criacao": "2020-01-23T18:49:11.165Z",
+                "__v": 0,
+                "get_url": "https://localhost/perfil/5e3c4eb05ff10d0017c4b285",
+                "update_url": "https://localhost/perfil/5e3c4eb05ff10d0017c4b285",
+                "delete_url": "https://localhost/perfil/5e3c4eb05ff10d0017c4b285",
+                "post_url": "https://localhost/perfil",
+                "get_all_url": "https://localhost/perfil"
+            }
+        ]
+    }
