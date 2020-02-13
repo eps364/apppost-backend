@@ -119,6 +119,8 @@ class Hateoas {
       return newObjeto;
     } else {
 
+      let newObjeto = [];
+
       objeto.forEach(obj => {
 
         obj = JSON.parse(JSON.stringify(obj));
@@ -140,6 +142,8 @@ class Hateoas {
 
   errorDb(objeto) {
 
+    console.log(objeto)
+
     let newObjeto = []
   
     objeto = JSON.parse(JSON.stringify(objeto));
@@ -147,6 +151,8 @@ class Hateoas {
     objeto.texto = 'Erro interno no banco de dados';
   
     newObjeto.push(objeto);
+
+    console.log(newObjeto)
   
     return newObjeto;
   
