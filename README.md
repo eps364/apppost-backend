@@ -53,12 +53,13 @@ Utilizado o [MongoDB](https://www.mongodb.com) que é um software de banco de da
 
 # 6. MODELAGEM DA APLICAÇÃO
 
-## 6.1 DIAGRAMA DE CASOS DE USO
+## 6.1 DIAGRAMAS DE CASO DE USO
 
 ![Caso de Uso - UC001](files/UC001.png)
 ![Caso de Uso - UC002](files/UC002.png)
+![Caso de Uso - UC003](files/UC003.png)
 
-## 6.2 DIAGRAMA DE CLASSES
+## 6.2 DIAGRAMAS DE CLASSE
 
 ## 6.3 DIAGRAMAS DE ATIVIDADES
 
