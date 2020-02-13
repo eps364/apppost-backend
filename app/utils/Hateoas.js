@@ -142,19 +142,17 @@ class Hateoas {
            
             return newObjeto;
         }
-
     }
 
-    errorDb(objeto){
+    errorDb(objeto) {
 
         let newObjeto = []
 
-        objeto.forEach(obj => {
+        objeto = JSON.parse(JSON.stringify(objeto));
 
-            obj.mensagem = 'Erro interno no banco de dados'
+        objeto.texto = 'Erro interno no banco de dados';
 
-            newObjeto.push(objeto)
-        })        
+        newObjeto.push(objeto);
 
         return newObjeto;      
         

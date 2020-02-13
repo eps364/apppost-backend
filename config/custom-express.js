@@ -5,10 +5,10 @@ const mongoose_connect = require('./mongoose-connect')
 const routes = require('../app/routes')
 const cors = require('cors');
 
-require("dotenv/config")
+require("dotenv/config");
 
 //Variaveis de ambiente
-//if(process.env.NODE_ENV !== 'production') 
+//if(process.env.NODE_ENV !== 'production')
 
 const app = express()
 

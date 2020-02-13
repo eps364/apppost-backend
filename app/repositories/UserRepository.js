@@ -68,6 +68,19 @@ class UserRepository {
         })
     }
 
+    async deleteAlunos(id_perfil) {
+
+        return await new Promise((resolve, reject) => {
+
+            this._model.deleteMany({ perfil: id_perfil })
+                    .then(success => {
+                        return resolve(success)
+                    }).catch(error => {
+                        return reject(error)
+            })
+        })        
+    }
+
     async updateOne(user) {
         return await new Promise((resolve, reject) => {
 
@@ -149,6 +162,8 @@ class UserRepository {
                     });
                 })
                 .catch(error => {
+
+                    console.log(error)
                     return reject(error.message)
                     
                 })

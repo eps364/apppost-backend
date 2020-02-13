@@ -1,4 +1,8 @@
 const bcrypt = require('bcrypt');
+const csv = require('csv-parser');
+const fs = require('fs');
+
+
 class UserController {
 
     constructor(repository, hateoas) {
@@ -115,6 +119,44 @@ class UserController {
 
                     return reject({objeto})
                 })
+        })
+    }
+
+    async import(perfilModel) {
+
+        const file = './app/files/alunos.csv'
+        const aluno = await perfilModel.findOne({ nome: 'Aluno'});
+        const id_aluno = aluno._id;
+       
+        let dell = await this._repository.deleteAlunos(id_aluno)
+
+        return await new Promise((resolve, reject) => {
+            
+            try {
+
+                fs.createReadStream(file)
+                .pipe(csv())
+                .on('data', row => {
+    
+                    Object.assign(row, {
+                        perfil: id_aluno,
+                        senha: row.cpf
+                    })
+    
+                   this._repository.create(row);
+                })
+                .on('end', () => console.log('Leitura concluida'))
+
+                return resolve({mensagem: 'Arquivo Importado com sucesso'})
+                
+
+            } catch (error) {
+
+                return reject({error})
+            }
+
+
+
         })
     }
 }

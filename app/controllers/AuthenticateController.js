@@ -6,7 +6,7 @@ class AuthenticateController {
         this._hateoas = hateoas
     }
 
-    async authenticate(user) {       
+    async authenticate(user) {
 
         return await new Promise((resolve, reject) => {
 
@@ -25,6 +25,8 @@ class AuthenticateController {
 
                 })
                 .catch(error => {
+
+                    console.log(error);
                     
                     let objeto  = this._hateoas.errorDb({ error })
 
