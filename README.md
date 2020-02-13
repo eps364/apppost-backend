@@ -56,6 +56,7 @@ Utilizado o [MongoDB](https://www.mongodb.com) que é um software de banco de da
 ## 6.1 DIAGRAMA DE CASOS DE USO
 
 ![Caso de Uso - UC001](files/UC001.png)
+![Caso de Uso - UC002](files/UC002.png)
 
 ## 6.2 DIAGRAMA DE CLASSES
 
