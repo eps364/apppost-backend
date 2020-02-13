@@ -17,17 +17,17 @@ class AuthenticateController {
                         expiresIn: 84600 // expires in 5min
                     });
 
+
                     return resolve({
                         auth: true,
                         token: token,
-                        id: success.id
+                        id: success.id,
+                        usuario: success
                     })
 
                 })
                 .catch(error => {
 
-                    console.log(error);
-                    
                     let objeto  = this._hateoas.errorDb({ error })
 
                     return reject(objeto)
@@ -37,7 +37,7 @@ class AuthenticateController {
     }
 
     async verify(req) {
-        
+
         return new Promise((resolve, reject) => {
 
             let token = req.headers['x-access-token'];

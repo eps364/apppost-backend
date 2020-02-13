@@ -9,7 +9,11 @@ class UserRepository {
     async create(user) {
 
 
-        const usuario = await this._model.findOne({ email: user.email}, {email: 1});
+        const usuario = await this._model.findOne({
+            email: user.email
+        }, {
+            email: 1
+        });
 
         return await new Promise((resolve, reject) => {
 
@@ -129,43 +133,62 @@ class UserRepository {
                 })
         })
     }
-    
+
     async authenticate(user) {
 
         return await new Promise((resolve, reject) => {
 
             this._model.findOne({
                     email: user.email
-                }).select('+senha')
+                })
+                .select('+senha')
                 .then(success => {
 
-              if (!success)
-                        return reject({ mensagem: 'Usuario não cadastrado' })
+                    if (!success)
+                        return reject({
+                            mensagem: 'Usuario não cadastrado'
+                        })
 
                     if (success.desligado === true)
-                        return reject({ mensagem: 'Usuario inativo' })    
+                        return reject({
+                            mensagem: 'Usuario inativo'
+                        })
 
                     if (success.ativo === false && success.desligado === false)
-                        return reject({ mensagem: 'Usuario aguardando aprovação' })
-                    
+                        return reject({
+                            mensagem: 'Usuario aguardando aprovação'
+                        })
 
-                    bcrypt.compare(user.senha, success.senha, (err, res) => { 
-                        success.senha=""
-                       
+
+                    bcrypt.compare(user.senha, success.senha, (err, res) => {
+                        success.senha = ""
+
                         if (!res)
-                            return reject({ mensagem: 'E-mail/Senha Inválidos' })
+                            return reject({
+                                mensagem: 'E-mail/Senha Inválidos'
+                            })
 
                         if (res)
-                            return resolve({success})
+                            return resolve({
+
+                                id: success.id,
+                                usuario: success
+
+
+
+
+                            })
                         if (err)
-                            return reject(err)
+                            return reject({
+                                mensagem: 'Erro na aplicação'
+                            })
                     });
                 })
                 .catch(error => {
 
                     console.log(error)
                     return reject(error.message)
-                    
+
                 })
         })
     }

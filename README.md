@@ -1,17 +1,11 @@
 ![](./files/LogoPostAPP.png)
 # PostAppApi-Compasso
-[![Build Status](https://travis-ci.org/npm/marky-markdown.svg?branch=master)](https://travis-ci.org/npm/marky-markdown)
-[![Code Climate](https://codeclimate.com/github/npm/marky-markdown/badges/gpa.svg)](https://codeclimate.com/github/npm/marky-markdown)
-[![Dependency Status](https://david-dm.org/npm/marky-markdown.svg)](https://david-dm.org/npm/marky-markdown)
-[![Pull Requests](https://img.shields.io/github/issues-pr/npm/marky-markdown.svg)](https://github.com/npm/marky-markdown/pulls)
-[![Issues](https://img.shields.io/github/issues/npm/marky-markdown.svg)](https://github.com/npm/marky-markdown/issues)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
-## 1. DIRETRIZES DE APLICATIVO 
+## 1. DIRETRIZES DE APLICATIVO
 Este é um projeto para a criação de uma aplicação web com o objetivo de criar Postagens para comunicação interna, sendo controlado com restrições de usuário e senha, também visa cadastrar quais tipos (interesse) o usuário tem de receber as postagens.
 
 ## 2. O PROPÓSITO DO APLICATIVO
-A aplicação vem para suprir a necessidade de intituições de ensino e/ou outras intituições tem de se comunicar por meio de recados, informativos, comunicados etc, geralmente enviados aos email que por diversas vezes não são acessados com frequencia, assim as informações chegam aos usuarios defasagem. 
+A aplicação vem para suprir a necessidade de intituições de ensino e/ou outras intituições tem de se comunicar por meio de recados, informativos, comunicados etc, geralmente enviados aos email que por diversas vezes não são acessados com frequencia, assim as informações chegam aos usuarios defasagem.
 
 ## 3. USUÁRIOS DO APLICATIVO
 ### 3.1 Os Alunos
@@ -36,47 +30,42 @@ O Administrador do sistema cadastra usuarios (Alunos, Professores, Coordenadores
 ### 3.7 Demais interessados
 No aplicativo os usuario que se cadastram como interesse em um determinado curso passa a receber as postagens referentes a estes cursos.
 
-# 4. RESTRIÇÕES NECESSÁRIAS
-Serão apresentadas as restrições identificadas até o presente momento, podendo sofrer alterações a qualquer hora em função do andamento do desenvolvimento do aplicativo.  
-  
+# 4. RESTRIÇÕES E OBSERVAÇÕES
+
 ## 4.1 RESTRIÇÕES DA SOLUÇÃO
+Serão apresentadas as restrições identificadas até o presente momento, podendo sofrer alterações a qualquer hora em função do andamento do desenvolvimento do aplicativo.
 
-## 4.2 AMBIENTE IMPLANTAÇÃO DO SISTEMA
+## 4.2 AMBIENTE DE IMPLANTAÇÃO DO APLICATIVO
+* Hospedagem da aplicação no [Heroku](https://www.heroku.com) que é uma plataforma em nuvem que suporta várias linguagens de programação, com limitações em modo free.
+* Banco de dados hospedado no [Mongo Atlas](https://www.mongodb.com/cloud/atlas).
+* Desenvolvido em [Javascript](https://www.w3schools.com/js/default.asp), [Node](https://nodejs.org/en/) e [React](https://pt-br.reactjs.org/).
 
-## 4.3 RESTRIÇÕES DE APLICAÇÕES COLABORATIVAS  
+Esta aplicação inicialmente hospedada nos serviços gratuitos acima, pode ser hospedade em qualquer servidor que suporte Node e Mongodb.
 
-## 4.4 GERENCIADO DE BANCO DE DADOS
+## 4.3 GERENCIADOR DE BANCO DE DADOS
+Utilizado o [MongoDB](https://www.mongodb.com) que é um software de banco de dados orientado a documentos livre, de código aberto e multiplataforma, escrito na linguagem C++.
 
-## 4.5 SISTEMA OPERACIONAL
+# 5. O ESCOPO DO APLICATIVO
 
-## 4.6 RESTRIÇÕES DE SOFTWARE “FORA DE PRATELEIRA”
-
-## 4.7 RESTRIÇÕES DO AMBIENTE DE TRABALHO  
-
-## 4.8 RESTRIÇÕES DE CRONOGRAMA  
-
-## 4.9 RESTRIÇÕES DE ORÇAMENTO  
-
-# 5. O ESCOPO DO TRABALHO
-
-## 5.1 A SITUAÇÃO ATUAL  
+## 5.1 A SITUAÇÃO ATUAL
 
 ## 5.2 O ESCOPO DO PRODUTO
 
 # 6. MODELAGEM DA APLICAÇÃO
 
-## 6.1 DIAGRAMA DE CASOS DE USO  
+## 6.1 DIAGRAMA DE CASOS DE USO
 
-## 6.2 DIAGRAMA DE CLASSES (DC01)  
+![Caso de Uso - UC001](files/UC001.png)
+![Caso de Uso - UC002](files/UC002.png)
 
-## 6.3 DIAGRAMAS DE ATIVIDADES (DA01)  
+## 6.2 DIAGRAMA DE CLASSES
 
+## 6.3 DIAGRAMAS DE ATIVIDADES
 
-# 7. REQUISITOS FUNCIONAIS E NÃO FUNCIONAIS  
+# 7. REQUISITOS FUNCIONAIS E NÃO FUNCIONAIS
 
-  
 ## 7.1 REQUISITOS NÃO FUNCIONAIS
 
 ## 7.2 REQUISITOS FUNCIONAIS
 
-# 8. PRIORIDADES 
+# 8. PRIORIDADES

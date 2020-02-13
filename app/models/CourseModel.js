@@ -11,6 +11,7 @@ module.exports = () => {
 
         ativo: {
             type: Boolean,
+            required:false,
             default: true
         },
 
