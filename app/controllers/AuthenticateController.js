@@ -17,15 +17,12 @@ class AuthenticateController {
                         expiresIn: 84600 // expires in 5min
                     });
 
+
                     return resolve({
                         auth: true,
                         token: token,
                         id: success.id,
-                        nome: success.nome,
-                        email: success.email,
-                        cpf:success.cpf,
-                        perfil: success.perfil,
-                        curso: success.curso,
+                        usuario: success
                     })
 
                 })
