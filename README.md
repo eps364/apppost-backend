@@ -43,29 +43,84 @@ Serão apresentadas as restrições identificadas até o presente momento, poden
 Esta aplicação inicialmente hospedada nos serviços gratuitos acima, pode ser hospedade em qualquer servidor que suporte Node e Mongodb.
 
 ## 4.3 GERENCIADOR DE BANCO DE DADOS
-Utilizado o [MongoDB](https://www.mongodb.com) que é um software de banco de dados orientado a documentos livre, de código aberto e multiplataforma, escrito na linguagem C++.
+Utilizando o [MongoDB](https://www.mongodb.com) que é um software de banco de dados orientado a documentos livre, de código aberto e multiplataforma, escrito na linguagem C++.
+
+## 4.4 INSTALAÇÃO DA APLICAÇÃO PARA DESENVOLVIMENTO LOCAL
+
+Clonando o respositorio
+
+>`` git clone https://github.com/KleitonBarone/PostApp-Compasso-Backend.git ``
+
+Os comando abaixo devem ser executados dentro da pasta do clone do git.
+
+Instalando as dependências do Aplicativo
+
+>``npm install `` ou ``yarn``
+
+Iniciando a aplicação em modo de desenvolvimento
+
+>``npm run dev `` ou ``yarn dev``
+
+Rodando a aplicação em modo produção
+
+>``npm start `` ou ``yarn start``
 
 # 5. O ESCOPO DO APLICATIVO
-
 ## 5.1 A SITUAÇÃO ATUAL
 
-## 5.2 O ESCOPO DO PRODUTO
-
 # 6. MODELAGEM DA APLICAÇÃO
+## 6.1 DIAGRAMAS DE CASO DE USO
+![Caso de Uso - UC001](files/UC001.png) Caso de Uso - UC001
+![Caso de Uso - UC002](files/UC002.png) Caso de Uso - UC002
+![Caso de Uso - UC003](files/UC003.png) Caso de Uso - UC003
 
-## 6.1 DIAGRAMA DE CASOS DE USO
+# BACKEND
 
-![Caso de Uso - UC001](files/UC001.png)
-![Caso de Uso - UC002](files/UC002.png)
+## ROTAS
 
-## 6.2 DIAGRAMA DE CLASSES
+A Rota para autenticação
+/Authenticate
 
-## 6.3 DIAGRAMAS DE ATIVIDADES
-
-# 7. REQUISITOS FUNCIONAIS E NÃO FUNCIONAIS
-
-## 7.1 REQUISITOS NÃO FUNCIONAIS
-
-## 7.2 REQUISITOS FUNCIONAIS
-
-# 8. PRIORIDADES
+Dados enviados no Body:
+> ``json
+  {
+    "email": "t5@t5.com",
+    "senha": "1234567"
+  }
+  ``
+Resposta:
+``json
+{
+  "auth": true,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4MDAxNzJkMzdiMyIsInVzdWFyaW8iOnsiYXRpdm8iOnRydWUsImRlc2xpZ2FkbyI6ZmFsc2UsIl9pZCI6IjVlNDQ1Y2ZkMDZhZDA4MDAxNzJkMzdiMyIsIm5vbWUiOiJ0ZXN0ZTUiLCJjcGYiOiIxMjM0NTY3ODkwOSIsImVtYWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZXJmaWwiOiI1ZTQxODJiN2Y5ODY5MDAwMTc5ZTJkYTgiLCJjdXJzbyI6W3siX2lkIjoiNWU0NDVjZmQwNmFkMDgwMDE3MmQzN2I1IiwiY3Vyc29faWQiOiI1ZTNkNjcxMTBlMjFlYzAwMTc4ZmFmNmYiLCJjYXJhY3RlcmlzdGljYSI6IkFsdW5vIn0seyJfaWQiOiI1ZTQ0NWNmZDA2YWQwODAwMTcyZDM3YjQiLCJjdXJzb19pZCI6IjVlNDE4ZmNhZjk4NjkwMDAxNzllMmRiMSIsImNhcmFjdGVyaXN0aWNhIjoiSW50ZXJlc3NlIn1dLCJkYXRhX2NyaWFjYW8iOiIyMDIwLTAyLTEyVDIwOjE1OjU3LjE1MVoiLCJfX3YiOjAsImRhdGFfbW9kaWZpY2FjYW8iOiIyMDIwLTAyLTEyVDIwOjE2OjM4Ljk3NFoifSwiaWF0IjoxNTgxNjE4NzQwLCJleHAiOjE1ODE3MDMzNDB9.K09vwyGvWL5uib6ky_eSvIF6URsr32Lo861D18oItro",
+  "id": "5e445cfd06ad0800172d37b3",
+  "usuario": {
+    "id": "5e445cfd06ad0800172d37b3",
+    "usuario": {
+      "ativo": true,
+      "desligado": false,
+      "_id": "5e445cfd06ad0800172d37b3",
+      "nome": "teste5",
+      "cpf": "12345678909",
+      "email": "t5@t5.com",
+      "senha": "",
+      "perfil": "5e4182b7f9869000179e2da8",
+      "curso": [
+        {
+          "_id": "5e445cfd06ad0800172d37b5",
+          "curso_id": "5e3d67110e21ec00178faf6f",
+          "caracteristica": "Aluno"
+        },
+        {
+          "_id": "5e445cfd06ad0800172d37b4",
+          "curso_id": "5e418fcaf9869000179e2db1",
+          "caracteristica": "Interesse"
+        }
+      ],
+      "data_criacao": "2020-02-12T20:15:57.151Z",
+      "__v": 0,
+      "data_modificacao": "2020-02-12T20:16:38.974Z"
+    }
+  }
+}
+``
