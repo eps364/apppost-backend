@@ -6,6 +6,7 @@ const strCon = 'mongodb://localhost/postapp'
 
 const connection = process.env.DB_HOST || strCon
 
+
 module.exports = () => {
   mongoose.connect(connection, {
       useNewUrlParser: true,
@@ -15,6 +16,10 @@ module.exports = () => {
       if(erro)
         console.log(`Não foi possivel connectar no banco de dados: ${JSON.stringify(erro)}`);
 
+      console.log(connection)
       console.log('Connectado ao banco de dados');
+      
   })
+
+
 }

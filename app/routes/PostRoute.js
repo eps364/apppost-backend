@@ -46,18 +46,9 @@ module.exports = app => {
             })
         .get((req, res) => {
 
-            if (req.body.search == undefined) {
-
-                postcontroller.find()
+            postcontroller.find()
                     .then(success => res.status(200).json(success))
                     .catch(error => res.status(500).json(error))
-
-            } else {
-
-                postcontroller.search(req.body.search)
-                    .then(success => res.status(200).json(success))
-                    .catch(error => res.status(500).json(error))
-            }
         })
 
     app.route('/posts/pesquisar')

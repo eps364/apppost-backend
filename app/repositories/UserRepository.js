@@ -174,9 +174,6 @@ class UserRepository {
                                 id: success.id,
                                 usuario: success
 
-
-
-
                             })
                         if (err)
                             return reject({
