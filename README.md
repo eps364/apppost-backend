@@ -1151,4 +1151,4 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
         }
 
 ## 7.0 Manual do Usuário
-[Manual do Usuário](#files/manual.pdf)
+[Manual do Usuário](files/manual.pdf)
