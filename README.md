@@ -28,6 +28,11 @@ Indice
 + 6.1.15 [Rota /user/:id PUT](#6115-rota-user)
 + 6.1.16 [Rota /user/:id DELETE](#6116-rota-user)
 + 6.1.17 [Rota /user GET](#6117-rota-user)
++ 6.1.18 [Rota /posts POST](#6118-rota-posts)
++ 6.1.19 [Rota /posts/:id GET](#6119-rota-posts)
++ 6.1.20 [Rota /posts/:id PUT](#6120-rota-posts)
++ 6.1.21 [Rota /posts/:id DELETE](#6121-rota-posts)
++ 6.1.22 [Rota /posts GET](#6122-rota-posts)
 
 ## 1.0 DIRETRIZES DE APLICATIVO
 Este é um projeto para a criação de uma aplicação web com o objetivo de criar Postagens para comunicação interna, sendo controlado com restrições de usuário e senha, também visa cadastrar quais tipos (interesse) o usuário tem de receber as postagens.
@@ -992,4 +997,154 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
         "get_all_url": "https://localhost/user"
         }
         ]
+    }
+
+
+### 6.1.18 **Rota:** /posts
+>##### Method: POST /posts
+
+
+#### Dados enviados no Body:
+
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+
+
+
+####  Possiveis erros, exemplos abaixo:
+
+
+
+### 6.1.19 **Rota:** /posts
+>##### Method: GET /posts/:id
+
+
+#### Dados enviados no Body:
+    vazio
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+
+####  Possiveis erros, exemplos abaixo:
+
+
+
+### 6.1.20 **Rota:** /posts
+>##### Method: PUT /posts/:id
+
+#### Dados enviados no Body:
+    {
+        "titulo": "Evendo X",
+        "descricao": "bla bla bla bla bla bla bla bla bla bla",
+        "data_evento": "2020-03-01",
+        "link": "http://www.blabla.com.br/poo",
+        "curso": ["5e3d7f9fe29cb64718b8bd25"]
+    }
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+    "objeto": {
+            "curso": [
+            "5e3d7f9fe29cb64718b8bd25"
+            ],
+            "_id": "5e46c58454092b0017f4dd0e",
+            "titulo": "Evendo X",
+            "descricao": "bla bla bla bla bla bla bla bla bla bla",
+            "data_evento": "2020-03-01T00:00:00.000Z",
+            "link": "http://www.blabla.com.br/poo",
+            "usuario": "5e46a4372c569d13e01c65af",
+            "ativo": true,
+            "data_criacao": "2020-02-14T16:06:28.252Z",
+            "__v": 0,
+            "get_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+            "update_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+            "delete_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+            "post_url": "https://postapp-compasso-api-dev.herokuapp.com/posts",
+            "get_all_url": "https://postapp-compasso-api-dev.herokuapp.com/posts"
+        }
+    }
+
+
+
+####  Possiveis erros, exemplos abaixo:
+
+
+### 6.1.21 **Rota:** /posts
+>##### Method: DELETE /posts/:id
+
+
+#### Dados enviados no Body:
+    vazio
+
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+    "objeto": {
+        "curso": [
+        "5e3d7f9fe29cb64718b8bd25"
+        ],
+        "_id": "5e46c58454092b0017f4dd0e",
+        "titulo": "Evendo X",
+        "descricao": "bla bla bla bla bla bla bla bla bla bla",
+        "data_evento": "2020-03-01T00:00:00.000Z",
+        "link": "http://www.blabla.com.br/poo",
+        "usuario": "5e46a4372c569d13e01c65af",
+        "ativo": true,
+        "data_criacao": "2020-02-14T16:06:28.252Z",
+        "__v": 0,
+        "get_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+        "update_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+        "delete_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+        "post_url": "https://postapp-compasso-api-dev.herokuapp.com/posts",
+        "get_all_url": "https://postapp-compasso-api-dev.herokuapp.com/posts"
+    }
+    }
+
+
+### 6.1.22 **Rota:** /posts
+>##### Method: GET /posts
+
+
+#### Dados enviados no Body:
+    vazio
+
+#### Dados enviados no Header
+    vazio
+
+#### Resposta:
+    {
+  "objeto": [
+    {
+        "curso": [],
+        "_id": "5e46c58454092b0017f4dd0e",
+        "titulo": "Evendo X",
+        "descricao": "bla bla bla bla bla bla bla bla bla bla",
+        "data_evento": "2020-03-01T00:00:00.000Z",
+        "link": "http://www.blabla.com.br/poo",
+        "usuario": {
+            "ativo": true,
+            "_id": "5e46a4372c569d13e01c65af",
+            "nome": "Ricardo Mateus Fernandes",
+            "email": "ricardomateusfernandes@yahoo.de"
+        },
+        "ativo": true,
+        "data_criacao": "2020-02-14T16:06:28.252Z",
+        "__v": 0,
+        "get_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+        "update_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+        "delete_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+        "post_url": "https://postapp-compasso-api-dev.herokuapp.com/posts",
+        "get_all_url": "https://postapp-compasso-api-dev.herokuapp.com/posts"
+        }
     }
