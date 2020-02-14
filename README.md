@@ -2,23 +2,22 @@
 # PostAppApi-Compasso
 
 Indice
-* 1. [DIRETRIZES DE APLICATIVO](#diretrizes_aplicativo)
+- 1. [DIRETRIZES DE APLICATIVO](#diretrizes_aplicativo)
 
-* 2. [O PROPÓSITO DO APLICATIVO](#2-o-prop%c3%93sito-do-aplicativo)
+- 2. [O PROPÓSITO DO APLICATIVO](#2-o-prop%c3%93sito-do-aplicativo)
 
-* 3. [USUÁRIOS DO APLICATIVO](#3-usu%c3%81rios-do-aplicativo)
+- 3. [USUÁRIOS DO APLICATIVO](#3-usu%c3%81rios-do-aplicativo)
 
-* 4.2 [AMBIENTE DE IMPLANTAÇÃO DO APLICATIVO](#42-ambiente-de-implanta%c3%87%c3%83o-do-aplicativo)
+- 4.2 [AMBIENTE DE IMPLANTAÇÃO DO APLICATIVO](#42-ambiente-de-implanta%c3%87%c3%83o-do-aplicativo)
 
-* 4.1 [RESTRIÇÕES DA SOLUÇÃO](#41-restri%c3%87%c3%95es-da-solu%c3%87%c3%83o)
+- 4.1 [RESTRIÇÕES DA SOLUÇÃO](#41-restri%c3%87%c3%95es-da-solu%c3%87%c3%83o)
+-* 4.3 [GERENCIADOR DE BANCO DE DADOS](#43-gerenciador-de-banco-de-dados)
 
-* 4.3 [GERENCIADOR DE BANCO DE DADOS](#43-gerenciador-de-banco-de-dados)
+- 4.4 [INSTALAÇÃO DA APLICAÇÃO PARA DESENVOLVIMENTO LOCAL](#44-instala%c3%87%c3%83o-da-aplica%c3%87%c3%83o-para-desenvolvimento-local)
 
-* 4.4 [INSTALAÇÃO DA APLICAÇÃO PARA DESENVOLVIMENTO LOCAL](#44-instala%c3%87%c3%83o-da-aplica%c3%87%c3%83o-para-desenvolvimento-local)
+- 5.1 [DIAGRAMAS DE CASO DE USO](#51-diagramas-de-caso-de-uso)
 
-* 5.1 [DIAGRAMAS DE CASO DE USO](#51-diagramas-de-caso-de-uso)
-
-* 6.1 [ROTAS](#61-rotas)
+- 6.1 [ROTAS](#61-rotas)
 
 <div id='diretrizes_aplicativo'/>
 
