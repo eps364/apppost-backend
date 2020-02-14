@@ -33,6 +33,7 @@ Indice
 + 6.1.20 [Rota /posts/:id PUT](#6120-rota-posts)
 + 6.1.21 [Rota /posts/:id DELETE](#6121-rota-posts)
 + 6.1.22 [Rota /posts GET](#6122-rota-posts)
++ 7.0 [Manual de Utilização](#70-manual-do-usu%c3%a1rio)
 
 ## 1.0 DIRETRIZES DE APLICATIVO
 Este é um projeto para a criação de uma aplicação web com o objetivo de criar Postagens para comunicação interna, sendo controlado com restrições de usuário e senha, também visa cadastrar quais tipos (interesse) o usuário tem de receber as postagens.
@@ -1149,4 +1150,5 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
             }
         }
 
-.
+## 7.0 Manual do Usuário
+[Manual do Usuário](#files/manual.pdf)
