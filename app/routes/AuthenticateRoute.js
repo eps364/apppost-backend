@@ -28,11 +28,14 @@ module.exports = app => {
 
         (req, res) => {
             const errors = validationResult(req);
+
             if (!errors.isEmpty()) {
                 return res.status(422).json({
                     errors: errors.array()
                 });
             }
+
+            console.log(req.body)
 
             autcontroller.authenticate(req.body)
                 .then(success => res.status(200).send(success))

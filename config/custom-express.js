@@ -19,14 +19,15 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 
-//Conecting with database
-mongoose_connect()
 consign({ cwd: 'app'})
     .include('models')
     .then('repositories')
     .then('controllers')
     .then('utils')
     .into(app)
+
+//Conecting with database
+mongoose_connect(app);
 
 //Routes
 routes(app)
