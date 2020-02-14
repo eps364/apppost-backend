@@ -3,12 +3,28 @@ const {
     check,
     validationResult
 } = require('express-validator');
+
+const multer = require('multer');
+const multerConfig = require('../../config/multer-config');
+
 module.exports = app => {
 
     const usercontroller = new app.controllers.UserController(
-        new app.repositories.UserRepository(
-            app.models.UserModel),
+        new app.repositories.UserRepository(app.models.UserModel),
         new app.utils.Hateoas('user'))
+
+    const perfilModel = app.models.ProfileModel;
+
+    
+    app.post('/user/importar', multer(multerConfig).single('file'), (req, res) => {
+
+        usercontroller.import(perfilModel)
+            .then(success => res.json(success))
+            .catch(error => res.json(error))
+
+        return res.json({mensagem: 'Upload com sucesso'})
+
+    })
 
     app.route('/user')
         .post([

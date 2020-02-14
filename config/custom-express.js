@@ -5,10 +5,10 @@ const mongoose_connect = require('./mongoose-connect')
 const routes = require('../app/routes')
 const cors = require('cors');
 
-require("dotenv/config")
+require("dotenv/config");
 
 //Variaveis de ambiente
-//if(process.env.NODE_ENV !== 'production') 
+//if(process.env.NODE_ENV !== 'production')
 
 const app = express()
 
@@ -19,14 +19,15 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 
-//Conecting with database
-mongoose_connect()
 consign({ cwd: 'app'})
     .include('models')
     .then('repositories')
     .then('controllers')
     .then('utils')
     .into(app)
+
+//Conecting with database
+mongoose_connect(app);
 
 //Routes
 routes(app)

@@ -2,169 +2,164 @@ const host = process.env.HOST || 'http://localhost:3000'
 
 class Hateoas {
 
-    constructor(rota){
-        this._rota = rota;
+  constructor(rota) {
+    this._rota = rota;
+  }
+
+  create(objeto) {
+
+    objeto = JSON.parse(JSON.stringify(objeto));
+
+    objeto.get_url = `${host}/${this._rota}/${objeto._id}`;
+    objeto.update_url = `${host}/${this._rota}/${objeto._id}`;
+    objeto.delete_url = `${host}/${this._rota}/${objeto._id}`;
+    objeto.post_url = `${host}/${this._rota}`;
+    objeto.get_all_url = `${host}/${this._rota}`;
+
+    return objeto;
+  }
+
+  update(objeto) {
+
+    if (!objeto) {
+      let newObjeto = {}
+      newObjeto.mensagem = 'Nenhum registro alterado ou não encontrado'
+      newObjeto.post_url = `${host}/${this._rota}`;
+      newObjeto.get_all_url = `${host}/${this._rota}`;
+
+      return newObjeto;
+    } else {
+
+      objeto = JSON.parse(JSON.stringify(objeto));
+
+      objeto.mensagem = 'Registro alterado com sucesso'
+      objeto.get_url = `${host}/${this._rota}/${objeto._id}`;
+      objeto.update_url = `${host}/${this._rota}/${objeto._id}`;
+      objeto.delete_url = `${host}/${this._rota}/${objeto._id}`;
+      objeto.post_url = `${host}/${this._rota}`;
+      objeto.get_all_url = `${host}/${this._rota}`;
+
+      return objeto
     }
 
-    create(objeto) {
+  }
 
-        objeto = JSON.parse(JSON.stringify(objeto));
+  delete(objeto) {
 
-        objeto.get_url = `${host}/${this._rota}/${objeto._id}`;
-        objeto.update_url = `${host}/${this._rota}/${objeto._id}`;
-        objeto.delete_url = `${host}/${this._rota}/${objeto._id}`;
-        objeto.post_url = `${host}/${this._rota}`;
-        objeto.get_all_url = `${host}/${this._rota}`;
+    let newObjeto = {};
 
-        return objeto;
-    }
-
-    update(objeto) {
-
-        if(!objeto){
-            let newObjeto = {}
-            newObjeto.mensagem = 'Nenhum registro alterado ou não encontrado'
-            newObjeto.post_url = `${host}/${this._rota}`;
-            newObjeto.get_all_url = `${host}/${this._rota}`;
-
-            return newObjeto;
-        }
-        else{
-
-            objeto = JSON.parse(JSON.stringify(objeto));
-
-            objeto.mensagem = 'Registro alterado com sucesso'
-            objeto.get_url = `${host}/${this._rota}/${objeto._id}`;
-            objeto.update_url = `${host}/${this._rota}/${objeto._id}`;
-            objeto.delete_url = `${host}/${this._rota}/${objeto._id}`;
-            objeto.post_url = `${host}/${this._rota}`;
-            objeto.get_all_url = `${host}/${this._rota}`;
-
-            return objeto
-        }
-
-    }
-
-    delete(objeto) {
-
-        let newObjeto = {};
-
-        if(objeto.nModified === 0){
-            newObjeto.mensagem = "Nenhum registro excluido ou não encontrado"
-            newObjeto.post_url = `${host}/${this._rota}`;
-            newObjeto.get_all_url = `${host}/${this._rota}`;
-        }
-        else{
-            newObjeto.mensagem = "Registro excluido com sucesso"
-            newObjeto.post_url = `${host}/${this._rota}`;
-            newObjeto.get_all_url = `${host}/${this._rota}`;
-
-        }
-
-        return newObjeto;
+    if (objeto.nModified === 0) {
+      newObjeto.mensagem = "Nenhum registro excluido ou não encontrado"
+      newObjeto.post_url = `${host}/${this._rota}`;
+      newObjeto.get_all_url = `${host}/${this._rota}`;
+    } else {
+      newObjeto.mensagem = "Registro excluido com sucesso"
+      newObjeto.post_url = `${host}/${this._rota}`;
+      newObjeto.get_all_url = `${host}/${this._rota}`;
 
     }
 
-    findOne(objeto){
+    return newObjeto;
 
-        if(objeto.length === 0){
+  }
 
-            let newObjeto = [];
+  findOne(objeto) {
 
-            let obj = {
-                mensagem: 'Não há resultados para mostrar',
-                post_url:  `${host}/${this._rota}`,
-                get_all_url: `${host}/${this._rota}`
-            }
+    if (objeto.length === 0) {
 
-            newObjeto.push(obj)
+      let newObjeto = [];
 
-            return newObjeto;
+      let obj = {
+        mensagem: 'Não há resultados para mostrar',
+        post_url: `${host}/${this._rota}`,
+        get_all_url: `${host}/${this._rota}`
+      }
 
-        }
-        else {
+      newObjeto.push(obj)
 
-            let newObjeto = [];
+      return newObjeto;
+
+    } else {
+
+      let newObjeto = [];
 
 
-            objeto.forEach(obj => {
-            
-                obj = JSON.parse(JSON.stringify(obj));
-                
-                obj.get_url = `${host}/${this._rota}/${obj._id}`;
-                obj.update_url = `${host}/${this._rota}/${obj._id}`;
-                obj.delete_url = `${host}/${this._rota}/${obj._id}`;
-                obj.post_url = `${host}/${this._rota}`;
-                obj.get_all_url = `${host}/${this._rota}`;    
-    
-                newObjeto.push(obj);
-    
-           })
-    
-            return newObjeto;
-        }
+      objeto.forEach(obj => {
 
+        obj = JSON.parse(JSON.stringify(obj));
+
+        obj.get_url = `${host}/${this._rota}/${obj._id}`;
+        obj.update_url = `${host}/${this._rota}/${obj._id}`;
+        obj.delete_url = `${host}/${this._rota}/${obj._id}`;
+        obj.post_url = `${host}/${this._rota}`;
+        obj.get_all_url = `${host}/${this._rota}`;
+
+        newObjeto.push(obj);
+
+      })
+
+      return newObjeto;
     }
 
-    findAll(objeto){
+  }
 
-        if(objeto.length === 0){
+  findAll(objeto) {
 
-            let newObjeto = [];
+    if (objeto.length === 0) {
 
-            let obj = {
-                mensagem: 'Não há resultados para mostrar',
-                post_url:  `${host}/${this._rota}`
-            }
+      let newObjeto = [];
 
-            newObjeto.push(obj)
+      let obj = {
+        mensagem: 'Não há resultados para mostrar',
+        post_url: `${host}/${this._rota}`
+      }
 
-            return newObjeto;
-        }
-        else{
+      newObjeto.push(obj)
 
-            let newObjeto = [];
+      return newObjeto;
+    } else {
 
-            objeto.forEach(obj => {
-        
-                obj = JSON.parse(JSON.stringify(obj));
-                
-                obj.get_url = `${host}/${this._rota}/${obj._id}`;
-                obj.update_url = `${host}/${this._rota}/${obj._id}`;
-                obj.delete_url = `${host}/${this._rota}/${obj._id}`;
-                obj.post_url = `${host}/${this._rota}`;
-                obj.get_all_url = `${host}/${this._rota}`;
-    
-    
-                newObjeto.push(obj);
-    
-           })
-           
-            return newObjeto;
-        }
+      let newObjeto = [];
 
+      objeto.forEach(obj => {
+
+        obj = JSON.parse(JSON.stringify(obj));
+
+        obj.get_url = `${host}/${this._rota}/${obj._id}`;
+        obj.update_url = `${host}/${this._rota}/${obj._id}`;
+        obj.delete_url = `${host}/${this._rota}/${obj._id}`;
+        obj.post_url = `${host}/${this._rota}`;
+        obj.get_all_url = `${host}/${this._rota}`;
+
+
+        newObjeto.push(obj);
+
+      })
+
+      return newObjeto;
     }
+  }
 
-    errorDb(objeto){
+  errorDb(objeto) {
 
-        let newObjeto = []
+    console.log(objeto)
 
-        objeto.forEach(obj => {
+    let newObjeto = []
+  
+    objeto = JSON.parse(JSON.stringify(objeto));
+  
+    objeto.texto = 'Erro interno no banco de dados';
+  
+    newObjeto.push(objeto);
 
-            obj.mensagem = 'Erro interno no banco de dados'
-
-            newObjeto.push(objeto)
-        })        
-
-        return newObjeto;      
-        
-    }
-
-
+    console.log(newObjeto)
+  
+    return newObjeto;
+  
+  }
 
 }
 
+
+
 module.exports = () => Hateoas
-
-
-
