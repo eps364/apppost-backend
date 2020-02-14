@@ -2,27 +2,45 @@
 # PostAppApi-Compasso
 
 Indice
-+ 1.0 [DIRETRIZES DE APLICATIVO](#diretrizes_aplicativo)
-+ 2.0 [O PROPÓSITO DO APLICATIVO](#2-o-prop%c3%93sito-do-aplicativo)
-+ 3.0 [USUÁRIOS DO APLICATIVO](#3-usu%c3%81rios-do-aplicativo)
-+ 4.2 [AMBIENTE DE IMPLANTAÇÃO DO APLICATIVO](#42-ambiente-de-implanta%c3%87%c3%83o-do-aplicativo)
++ 1.0 [DIRETRIZES DE APLICATIVO](#10-diretrizes-de-aplicativo)
++ 2.0 [O PROPÓSITO DO APLICATIVO](#20-o-prop%c3%93sito-do-aplicativo)
++ 3.0 [USUÁRIOS DO APLICATIVO](#30-usu%c3%81rios-do-aplicativo)
 + 4.1 [RESTRIÇÕES DA SOLUÇÃO](#41-restri%c3%87%c3%95es-da-solu%c3%87%c3%83o)
++ 4.2 [AMBIENTE DE IMPLANTAÇÃO DO APLICATIVO](#42-ambiente-de-implanta%c3%87%c3%83o-do-aplicativo)
 + 4.3 [GERENCIADOR DE BANCO DE DADOS](#43-gerenciador-de-banco-de-dados)
 + 4.4 [INSTALAÇÃO DA APLICAÇÃO PARA DESENVOLVIMENTO LOCAL](#44-instala%c3%87%c3%83o-da-aplica%c3%87%c3%83o-para-desenvolvimento-local)
 + 5.1 [DIAGRAMAS DE CASO DE USO](#51-diagramas-de-caso-de-uso)
 + 6.1 [ROTAS](#61-rotas)
-
-<div id='diretrizes_aplicativo'/>
++ 6.1.1 [Rota /Authenticate](#611-rota-authenticate)
++ 6.1.2 [Rota /aluno POST](#612-rota-aluno)
++ 6.1.3 [Rota /cursos POST](#613-rota-cursos)
++ 6.1.4 [Rota /cursos/:id GET](#614-rota-cursos)
++ 6.1.5 [Rota /cursos/:id PUT](#615-rota-cursos)
++ 6.1.6 [Rota /cursos/:id DELETE](#616-rota-cursos)
++ 6.1.7 [Rota /cursos GET](#617-rota-cursos)
++ 6.1.8 [Rota /perfil POST](#618-rota-perfil)
++ 6.1.9 [Rota /perfil/:id GET](#619-rota-perfil)
++ 6.1.10 [Rota /perfil/:id PUT](#6110-rota-perfil)
++ 6.1.11 [Rota /perfil//:id DELETE](#6111-rota-perfil)
++ 6.1.12 [Rota /perfil GET](#6112-rota-perfil)
++ 6.1.13 [Rota /user POST](#613-rota-user)
++ 6.1.14 [Rota /user/:id GET](#6114-rota-user)
++ 6.1.15 [Rota /user/:id PUT](#6115-rota-user)
++ 6.1.16 [Rota /user/:id DELETE](#6116-rota-user)
++ 6.1.17 [Rota /user GET](#6117-rota-user)
++ 6.1.18 [Rota /posts POST](#6118-rota-posts)
++ 6.1.19 [Rota /posts/:id GET](#6119-rota-posts)
++ 6.1.20 [Rota /posts/:id PUT](#6120-rota-posts)
++ 6.1.21 [Rota /posts/:id DELETE](#6121-rota-posts)
++ 6.1.22 [Rota /posts GET](#6122-rota-posts)
++ 7.0 [Manual de Utilização](#70-manual-do-usu%c3%a1rio)
 
 ## 1.0 DIRETRIZES DE APLICATIVO
 Este é um projeto para a criação de uma aplicação web com o objetivo de criar Postagens para comunicação interna, sendo controlado com restrições de usuário e senha, também visa cadastrar quais tipos (interesse) o usuário tem de receber as postagens.
 
-<div id='proposito_aplicativo'/>
 
 ## 2.0 O PROPÓSITO DO APLICATIVO
 A aplicação vem para suprir a necessidade de intituições de ensino e/ou outras intituições tem de se comunicar por meio de recados, informativos, comunicados etc, geralmente enviados aos email que por diversas vezes não são acessados com frequencia, assim as informações chegam aos usuarios defasagem.
-
-<div id='usuario_do_aplicativo'/>
 
 ## 3.0 USUÁRIOS DO APLICATIVO
 ### 3.1 Os Alunos
@@ -49,12 +67,8 @@ No aplicativo os usuario que se cadastram como interesse em um determinado curso
 
 # 4.0 RESTRIÇÕES
 
-<div id='restricoes_solucao'/>
-
 ## 4.1 RESTRIÇÕES DA SOLUÇÃO
 Serão apresentadas as restrições identificadas até o presente momento, podendo sofrer alterações a qualquer hora em função do andamento do desenvolvimento do aplicativo.
-
-<div id='ambiente_implantacao_aplicativo'/>
 
 ## 4.2 AMBIENTE DE IMPLANTAÇÃO DO APLICATIVO
 * Hospedagem da aplicação no [Heroku](https://www.heroku.com) que é uma plataforma em nuvem que suporta várias linguagens de programação, com limitações em modo free.
@@ -63,12 +77,8 @@ Serão apresentadas as restrições identificadas até o presente momento, poden
 
 Esta aplicação inicialmente hospedada nos serviços gratuitos acima, pode ser hospedade em qualquer servidor que suporte Node e Mongodb.
 
-<div id='gerenciado_db'/>
-
 ## 4.3 GERENCIADOR DE BANCO DE DADOS
 Utilizando o [MongoDB](https://www.mongodb.com) que é um software de banco de dados orientado a documentos livre, de código aberto e multiplataforma, escrito na linguagem C++.
-
-<div id='instalacao_dev_local'/>
 
 ## 4.4 INSTALAÇÃO DA APLICAÇÃO PARA DESENVOLVIMENTO LOCAL
 
@@ -92,8 +102,6 @@ Rodando a aplicação em modo produção
 
 # 5.0 MODELAGEM DA APLICAÇÃO
 
-<div id='diagramas_de_caso_de_uso'/>
-
 ## 5.1 DIAGRAMAS DE CASO DE USO
 ![Caso de Uso - UC001](files/UC001.png) Caso de Uso - UC001
 ![Caso de Uso - UC002](files/UC002.png) Caso de Uso - UC002
@@ -101,11 +109,9 @@ Rodando a aplicação em modo produção
 
 # 6.0 BACKEND
 
-<div id='rotas'/>
-
 ## 6.1 ROTAS
 
-### **Rota:** /Authenticate
+### 6.1.1 **Rota:** /Authenticate
 >##### Method: POST /Autenticate
 
 Rota utilizada para fazer autenticação para as, os dados enviados pelo Body retorna um token para ser usado nas funções.
@@ -177,7 +183,8 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
         ]
     }
 
-### **Rota:** /aluno
+
+### 6.1.2 **Rota:** /aluno
 >##### Method: POST user
 
 #### Dados enviados no Body:
@@ -246,13 +253,18 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
         ]
     }
 
-### **Rota:** /cursos
->##### Method: POST /cursos
+
+### 6.1.3 **Rota:** /user
+>##### Method: POST /user
 
 
 #### Dados enviados no Body:
     {
-        "nome": "Analise e Desenvolvimento de Sistemas"
+        "nome": "João de Souza",
+        "cpf": "01234567890",
+        "email": "joao@joao.com",
+        "senha": "senha123",
+            "perfil": "5e45545625f3850c3838c5c9"
     }
 
 #### Dados enviados no Header
@@ -262,32 +274,57 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
     {
         "objeto": {
             "ativo": true,
-            "_id": "5e45ad0984f6260017d4f98c",
-            "nome": "Analise e Desenvolvimento de Sistemas",
-            "data_criacao": "2020-02-13T20:09:45.562Z",
+            "desligado": false,
+            "_id": "5e46b35c17adc1001760c6c5",
+            "nome": "João de Souza",
+            "cpf": "01234567890",
+            "email": "joao@joao.com",
+            "senha": "$2b$10$0I8C.WNbaNHY5Zs0bIHvV.DMN46QTIjfIB7i70V8sLXXDqmD4Kf7e",
+            "perfil": "5e45545625f3850c3838c5c9",
+            "curso": [],
+            "data_criacao": "2020-02-14T14:49:00.854Z",
             "__v": 0,
-            "get_url": "https://localhost/cursos/5e45ad0984f6260017d4f98c",
-            "update_url": "https://localhost/cursos/5e45ad0984f6260017d4f98c",
-            "delete_url": "https://localhost/cursos/5e45ad0984f6260017d4f98c",
-            "post_url": "https://localhost/cursos",
-            "get_all_url": "https://localhost/cursos"
+            "get_url": "https://postapp-compasso-api-dev.herokuapp.com/user/5e46b35c17adc1001760c6c5",
+            "update_url": "https://postapp-compasso-api-dev.herokuapp.com/user/5e46b35c17adc1001760c6c5",
+            "delete_url": "https://postapp-compasso-api-dev.herokuapp.com/user/5e46b35c17adc1001760c6c5",
+            "post_url": "https://postapp-compasso-api-dev.herokuapp.com/user",
+            "get_all_url": "https://postapp-compasso-api-dev.herokuapp.com/user"
         }
     }
+
 
 ####  Possiveis erros, exemplos abaixo:
     {
+        "auth": false,
+        "message": "No token provided."
+    },
+    {
     "errors": [
-        {
-        "value": "aa",
-        "msg": "O nome do curso esta invalido, preencha com mais de 3 letras",
-        "param": "nome",
-        "location": "body"
-        }
-    ]
+            {
+            "value": "Jo",
+            "msg": "Preencha com mais de 3 letras",
+            "param": "nome",
+            "location": "body"
+            },
+            {
+            "value": "1",
+            "msg": "Digite um cpf valido, apenas numeros, sem ponto e sem hifem.",
+            "param": "cpf",
+            "location": "body"
+            },
+            {
+            "value": "123",
+            "msg": "Senha incompativel, digite outra e maior que 4 digitos",
+            "param": "senha",
+            "location": "body"
+            }
+        ]
     }
 
-### **Rota:** /cursos
->##### Method: GET /perfil/:id
+
+
+### 6.1.4 **Rota:** /cursos
+>##### Method: GET /cursos/:id
 
 
 #### Dados enviados no Body:
@@ -325,7 +362,8 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
     ]
     }
 
-### **Rota:** /cursos
+
+### 6.1.5 **Rota:** /cursos
 >##### Method: PUT /cursos/:id
 
 #### Dados enviados no Body:
@@ -368,7 +406,7 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
     }
 
 
-### **Rota:** /cursos
+### 6.1.6 **Rota:** /cursos
 >##### Method: DELETE /cursos/:id
 
 
@@ -397,7 +435,8 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
     }
 
 
-### **Rota:** /cursos
+
+### 6.1.7 **Rota:** /cursos
 >##### Method: GET /cursos
 
 
@@ -439,7 +478,8 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
     }
 
 
-### **Rota:** /perfil
+
+### 6.1.8 **Rota:** /perfil
 >##### Method: POST /perfil
 
 
@@ -479,7 +519,8 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
         ]
     }
 
-### **Rota:** /perfil
+
+### 6.1.9 **Rota:** /perfil
 >##### Method: GET /perfil/:id
 
 
@@ -519,7 +560,8 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
         ]
     }
 
-### **Rota:** /perfil
+
+### 6.1.10 **Rota:** /perfil
 >##### Method: PUT /perfil/:id
 
 #### Dados enviados no Body:
@@ -568,7 +610,8 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
     }
 
 
-### **Rota:** /perfil
+
+### 6.1.11 **Rota:** /perfil
 >##### Method: DELETE /perfil/:id
 
 
@@ -599,7 +642,8 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
     }
 
 
-### **Rota:** /perfil
+
+### 6.1.12 **Rota:** /perfil
 >##### Method: GET /perfil
 
 
@@ -640,7 +684,8 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
         ]
     }
 
-### **Rota:** /user
+
+### 6.1.13 **Rota:** /user
 >##### Method: POST user
 
 
@@ -711,7 +756,8 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
         ]
     }
 
-### **Rota:** /user
+
+### 6.1.14 **Rota:** /user
 >##### Method: GET user/:id
 
 
@@ -755,7 +801,7 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
     }
 
 
-### **Rota:** /user
+### 6.1.15 **Rota:** /user
 >##### Method: PUT user/:id
 
 #### Dados enviados no Body:
@@ -818,7 +864,7 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
     }
 
 
-### user
+### 6.1.16 **Rota:** /user
 >##### Method: DELETE user/:id
 
 
@@ -850,7 +896,7 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
 
 
 
-### user
+### 6.1.17 **Rota:** /user
 >##### Method: GET user
 
 
@@ -953,3 +999,156 @@ Rota utilizada para fazer autenticação para as, os dados enviados pelo Body re
         }
         ]
     }
+
+
+### 6.1.18 **Rota:** /posts
+>##### Method: POST /posts
+
+
+#### Dados enviados no Body:
+
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+
+
+
+####  Possiveis erros, exemplos abaixo:
+
+
+
+### 6.1.19 **Rota:** /posts
+>##### Method: GET /posts/:id
+
+
+#### Dados enviados no Body:
+    vazio
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+
+####  Possiveis erros, exemplos abaixo:
+
+
+
+### 6.1.20 **Rota:** /posts
+>##### Method: PUT /posts/:id
+
+#### Dados enviados no Body:
+    {
+        "titulo": "Evendo X",
+        "descricao": "bla bla bla bla bla bla bla bla bla bla",
+        "data_evento": "2020-03-01",
+        "link": "http://www.blabla.com.br/poo",
+        "curso": ["5e3d7f9fe29cb64718b8bd25"]
+    }
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+    "objeto": {
+            "curso": [
+            "5e3d7f9fe29cb64718b8bd25"
+            ],
+            "_id": "5e46c58454092b0017f4dd0e",
+            "titulo": "Evendo X",
+            "descricao": "bla bla bla bla bla bla bla bla bla bla",
+            "data_evento": "2020-03-01T00:00:00.000Z",
+            "link": "http://www.blabla.com.br/poo",
+            "usuario": "5e46a4372c569d13e01c65af",
+            "ativo": true,
+            "data_criacao": "2020-02-14T16:06:28.252Z",
+            "__v": 0,
+            "get_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+            "update_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+            "delete_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+            "post_url": "https://postapp-compasso-api-dev.herokuapp.com/posts",
+            "get_all_url": "https://postapp-compasso-api-dev.herokuapp.com/posts"
+        }
+    }
+
+
+
+####  Possiveis erros, exemplos abaixo:
+
+
+### 6.1.21 **Rota:** /posts
+>##### Method: DELETE /posts/:id
+
+
+#### Dados enviados no Body:
+    vazio
+
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+        "objeto": {
+            "curso": [
+            "5e3d7f9fe29cb64718b8bd25"
+            ],
+            "_id": "5e46c58454092b0017f4dd0e",
+            "titulo": "Evendo X",
+            "descricao": "bla bla bla bla bla bla bla bla bla bla",
+            "data_evento": "2020-03-01T00:00:00.000Z",
+            "link": "http://www.blabla.com.br/poo",
+            "usuario": "5e46a4372c569d13e01c65af",
+            "ativo": true,
+            "data_criacao": "2020-02-14T16:06:28.252Z",
+            "__v": 0,
+            "get_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+            "update_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+            "delete_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+            "post_url": "https://postapp-compasso-api-dev.herokuapp.com/posts",
+            "get_all_url": "https://postapp-compasso-api-dev.herokuapp.com/posts"
+        }
+    }
+
+
+### 6.1.22 **Rota:** /posts
+>##### Method: GET /posts
+
+
+#### Dados enviados no Body:
+    vazio
+
+#### Dados enviados no Header
+    vazio
+
+#### Resposta:
+    {
+    "objeto": [
+        {
+            "curso": [],
+            "_id": "5e46c58454092b0017f4dd0e",
+            "titulo": "Evendo X",
+            "descricao": "bla bla bla bla bla bla bla bla bla bla",
+            "data_evento": "2020-03-01T00:00:00.000Z",
+            "link": "http://www.blabla.com.br/poo",
+            "usuario": {
+                "ativo": true,
+                "_id": "5e46a4372c569d13e01c65af",
+                "nome": "Ricardo Mateus Fernandes",
+                "email": "ricardomateusfernandes@yahoo.de"
+            },
+            "ativo": true,
+            "data_criacao": "2020-02-14T16:06:28.252Z",
+            "__v": 0,
+            "get_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+            "update_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+            "delete_url": "https://postapp-compasso-api-dev.herokuapp.com/posts/5e46c58454092b0017f4dd0e",
+            "post_url": "https://postapp-compasso-api-dev.herokuapp.com/posts",
+            "get_all_url": "https://postapp-compasso-api-dev.herokuapp.com/posts"
+            }
+        }
+
+## 7.0 Manual do Usuário
+[Manual do Usuário](files/manual.pdf)
