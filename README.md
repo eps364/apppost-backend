@@ -2,36 +2,29 @@
 # PostAppApi-Compasso
 
 Indice
-- 1. [DIRETRIZES DE APLICATIVO](#diretrizes_aplicativo)
-
-- 2. [O PROPÓSITO DO APLICATIVO](#2-o-prop%c3%93sito-do-aplicativo)
-
-- 3. [USUÁRIOS DO APLICATIVO](#3-usu%c3%81rios-do-aplicativo)
-
-- 4.2 [AMBIENTE DE IMPLANTAÇÃO DO APLICATIVO](#42-ambiente-de-implanta%c3%87%c3%83o-do-aplicativo)
-
-- 4.1 [RESTRIÇÕES DA SOLUÇÃO](#41-restri%c3%87%c3%95es-da-solu%c3%87%c3%83o)
--* 4.3 [GERENCIADOR DE BANCO DE DADOS](#43-gerenciador-de-banco-de-dados)
-
-- 4.4 [INSTALAÇÃO DA APLICAÇÃO PARA DESENVOLVIMENTO LOCAL](#44-instala%c3%87%c3%83o-da-aplica%c3%87%c3%83o-para-desenvolvimento-local)
-
-- 5.1 [DIAGRAMAS DE CASO DE USO](#51-diagramas-de-caso-de-uso)
-
-- 6.1 [ROTAS](#61-rotas)
++ 1.0 [DIRETRIZES DE APLICATIVO](#diretrizes_aplicativo)
++ 2.0 [O PROPÓSITO DO APLICATIVO](#2-o-prop%c3%93sito-do-aplicativo)
++ 3.0 [USUÁRIOS DO APLICATIVO](#3-usu%c3%81rios-do-aplicativo)
++ 4.2 [AMBIENTE DE IMPLANTAÇÃO DO APLICATIVO](#42-ambiente-de-implanta%c3%87%c3%83o-do-aplicativo)
++ 4.1 [RESTRIÇÕES DA SOLUÇÃO](#41-restri%c3%87%c3%95es-da-solu%c3%87%c3%83o)
++ 4.3 [GERENCIADOR DE BANCO DE DADOS](#43-gerenciador-de-banco-de-dados)
++ 4.4 [INSTALAÇÃO DA APLICAÇÃO PARA DESENVOLVIMENTO LOCAL](#44-instala%c3%87%c3%83o-da-aplica%c3%87%c3%83o-para-desenvolvimento-local)
++ 5.1 [DIAGRAMAS DE CASO DE USO](#51-diagramas-de-caso-de-uso)
++ 6.1 [ROTAS](#61-rotas)
 
 <div id='diretrizes_aplicativo'/>
 
-## 1. DIRETRIZES DE APLICATIVO
+## 1.0 DIRETRIZES DE APLICATIVO
 Este é um projeto para a criação de uma aplicação web com o objetivo de criar Postagens para comunicação interna, sendo controlado com restrições de usuário e senha, também visa cadastrar quais tipos (interesse) o usuário tem de receber as postagens.
 
 <div id='proposito_aplicativo'/>
 
-## 2. O PROPÓSITO DO APLICATIVO
+## 2.0 O PROPÓSITO DO APLICATIVO
 A aplicação vem para suprir a necessidade de intituições de ensino e/ou outras intituições tem de se comunicar por meio de recados, informativos, comunicados etc, geralmente enviados aos email que por diversas vezes não são acessados com frequencia, assim as informações chegam aos usuarios defasagem.
 
 <div id='usuario_do_aplicativo'/>
 
-## 3. USUÁRIOS DO APLICATIVO
+## 3.0 USUÁRIOS DO APLICATIVO
 ### 3.1 Os Alunos
 Uma dos questionamentos dos alunos, é que a leitura constante de email não é viavel por indisponibilidade técnicas ou mesmo praticidade. Os alunos tambem podem se cadastar para receber informações de outros cursos de seu interesse.
 Sendo assim o aplicativo ficará de fácil acesso e fácil uso.
@@ -54,7 +47,7 @@ O Administrador do sistema cadastra usuarios (Alunos, Professores, Coordenadores
 ### 3.7 Demais interessados
 No aplicativo os usuario que se cadastram como interesse em um determinado curso passa a receber as postagens referentes a estes cursos.
 
-# 4. RESTRIÇÕES
+# 4.0 RESTRIÇÕES
 
 <div id='restricoes_solucao'/>
 
@@ -97,7 +90,7 @@ Rodando a aplicação em modo produção
 
 >``npm start `` ou ``yarn start``
 
-# 5. MODELAGEM DA APLICAÇÃO
+# 5.0 MODELAGEM DA APLICAÇÃO
 
 <div id='diagramas_de_caso_de_uso'/>
 
@@ -106,7 +99,7 @@ Rodando a aplicação em modo produção
 ![Caso de Uso - UC002](files/UC002.png) Caso de Uso - UC002
 ![Caso de Uso - UC003](files/UC003.png) Caso de Uso - UC003
 
-# 6. BACKEND
+# 6.0 BACKEND
 
 <div id='rotas'/>
 
