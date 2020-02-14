@@ -78,49 +78,783 @@ Rodando a aplicação em modo produção
 
 ## ROTAS
 
-A Rota para autenticação
-/Authenticate
+### /Authenticate
+>##### Method: POST /Autenticate
 
-Dados enviados no Body:
-> ``json
-  {
-    "email": "t5@t5.com",
-    "senha": "1234567"
-  }
-  ``
-Resposta:
-``json
-{
-  "auth": true,
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4MDAxNzJkMzdiMyIsInVzdWFyaW8iOnsiYXRpdm8iOnRydWUsImRlc2xpZ2FkbyI6ZmFsc2UsIl9pZCI6IjVlNDQ1Y2ZkMDZhZDA4MDAxNzJkMzdiMyIsIm5vbWUiOiJ0ZXN0ZTUiLCJjcGYiOiIxMjM0NTY3ODkwOSIsImVtYWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZXJmaWwiOiI1ZTQxODJiN2Y5ODY5MDAwMTc5ZTJkYTgiLCJjdXJzbyI6W3siX2lkIjoiNWU0NDVjZmQwNmFkMDgwMDE3MmQzN2I1IiwiY3Vyc29faWQiOiI1ZTNkNjcxMTBlMjFlYzAwMTc4ZmFmNmYiLCJjYXJhY3RlcmlzdGljYSI6IkFsdW5vIn0seyJfaWQiOiI1ZTQ0NWNmZDA2YWQwODAwMTcyZDM3YjQiLCJjdXJzb19pZCI6IjVlNDE4ZmNhZjk4NjkwMDAxNzllMmRiMSIsImNhcmFjdGVyaXN0aWNhIjoiSW50ZXJlc3NlIn1dLCJkYXRhX2NyaWFjYW8iOiIyMDIwLTAyLTEyVDIwOjE1OjU3LjE1MVoiLCJfX3YiOjAsImRhdGFfbW9kaWZpY2FjYW8iOiIyMDIwLTAyLTEyVDIwOjE2OjM4Ljk3NFoifSwiaWF0IjoxNTgxNjE4NzQwLCJleHAiOjE1ODE3MDMzNDB9.K09vwyGvWL5uib6ky_eSvIF6URsr32Lo861D18oItro",
-  "id": "5e445cfd06ad0800172d37b3",
-  "usuario": {
-    "id": "5e445cfd06ad0800172d37b3",
-    "usuario": {
-      "ativo": true,
-      "desligado": false,
-      "_id": "5e445cfd06ad0800172d37b3",
-      "nome": "teste5",
-      "cpf": "12345678909",
-      "email": "t5@t5.com",
-      "senha": "",
-      "perfil": "5e4182b7f9869000179e2da8",
-      "curso": [
+Rota utilizada para fazer autenticação para as, os dados enviados pelo Body retorna um token para ser usado nas funções.
+
+#### Dados enviados no Body:
+    {
+        "email": "t5@t5.com",
+        "senha": "1234567"
+    }
+
+#### Dados enviados no Header
+    vazio
+
+#### Resposta:
+    {
+        "auth": true,
+        "token": "eyJhbGcisInR5cCI6IkpXVCJ9.eyJpZCI6IZmNhZjk4NjkwMDAxNzllMmRiMSIsImNhcmFjdGVyaXN0aWNhIjoiSW50ZXJlc3NlIn1dLCJkYXRhX2NyajU3LjE1M2FjYW8iOiIyMDIwLTAyLTEyVDIwOjE2OjM4Ljk3NFoifSwiaWF0IjoxNTgxNjE4NzQwLCJleHAiOjE1ODE3MDMzNDB9.K09vwyGvWL5uib6ky_eSvIF6URsr32Lo861D18oItro",
+        "id": "5e445cfd06ad0800172d37b3",
+        "usuario": {
+            "id": "5e445cfd06ad0800172d37b3",
+            "usuario": {
+            "ativo": true,
+            "desligado": false,
+            "_id": "5e445cfd06ad0800172d37b3",
+            "nome": "teste5",
+            "cpf": "12345678909",
+            "email": "t5@t5.com",
+            "senha": "",
+            "perfil": "5e4182b7f9869000179e2da8",
+            "curso": [
+                {
+                    "_id": "5e445cfd06ad0800172d37b5",
+                    "curso_id": "5e3d67110e21ec00178faf6f",
+                    "caracteristica": "Aluno"
+                },
+                {
+                    "_id": "5e445cfd06ad0800172d37b4",
+                    "curso_id": "5e418fcaf9869000179e2db1",
+                    "caracteristica": "Interesse"
+                }
+            ],
+            "data_criacao": "2020-02-12T20:15:57.151Z",
+            "__v": 0,
+            "data_modificacao": "2020-02-12T20:16:38.974Z"
+            }
+        }
+    }
+
+####  Possiveis erros, exemplos abaixo:
+    [
         {
-          "_id": "5e445cfd06ad0800172d37b5",
-          "curso_id": "5e3d67110e21ec00178faf6f",
-          "caracteristica": "Aluno"
+            "error": {
+                "mensagem": "Usuario não cadastrado",
+                "mensagem": "E-mail/Senha Inválidos"
+                },
+            "texto": "Erro interno no banco de dados",
+        }
+    ]
+
+####  ou
+    {
+        "errors": [
+            {
+                "value": "123",
+                "msg": "Senha incompativel, digite outra e maior que 4 digitos",
+                "param": "senha",
+                "location": "body"
+            }
+        ]
+    }
+
+
+### /cursos
+>##### Method: POST /cursos
+
+
+#### Dados enviados no Body:
+    {
+        "nome": "Analise e Desenvolvimento de Sistemas"
+    }
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+        "objeto": {
+            "ativo": true,
+            "_id": "5e45ad0984f6260017d4f98c",
+            "nome": "Analise e Desenvolvimento de Sistemas",
+            "data_criacao": "2020-02-13T20:09:45.562Z",
+            "__v": 0,
+            "get_url": "https://localhost/cursos/5e45ad0984f6260017d4f98c",
+            "update_url": "https://localhost/cursos/5e45ad0984f6260017d4f98c",
+            "delete_url": "https://localhost/cursos/5e45ad0984f6260017d4f98c",
+            "post_url": "https://localhost/cursos",
+            "get_all_url": "https://localhost/cursos"
+        }
+    }
+
+####  Possiveis erros, exemplos abaixo:
+    {
+    "errors": [
+        {
+        "value": "aa",
+        "msg": "O nome do curso esta invalido, preencha com mais de 3 letras",
+        "param": "nome",
+        "location": "body"
+        }
+    ]
+    }
+
+### /cursos
+>##### Method: GET /perfil/:id
+
+
+#### Dados enviados no Body:
+    vazio
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+        "objeto": [
+            {
+                "ativo": true,
+                "_id": "5e45921b5414140017349cfa",
+                "nome": "Mecanica",
+                "data_criacao": "2020-02-13T18:14:51.849Z",
+                "__v": 0,
+                "data_modificacao": "2020-02-13T18:32:06.882Z",
+                "get_url": "https://localhost/cursos/5e45921b5414140017349cfa",
+                "update_url": "https://localhost/cursos/5e45921b5414140017349cfa",
+                "delete_url": "https://localhost/cursos/5e45921b5414140017349cfa",
+                "post_url": "https://localhost/cursos",
+                "get_all_url": "https://localhost/cursos"
+            }
+        ]
+    }
+
+####  Possiveis erros, exemplos abaixo:
+    {
+    "objeto": [
+        {
+        "error": "Cast to ObjectId failed for value \"5e45921b5414140017349cf\" at path \"_id\" for model \"Course\"",
+        "texto": "Erro interno no banco de dados"
+        }
+    ]
+    }
+
+### /cursos
+>##### Method: PUT /cursos/:id
+
+#### Dados enviados no Body:
+    {
+        "nome": "Novo nome do curso",
+        "ativo": true,
+        "desligado":false
+    }
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+        "objeto": {
+            "ativo": true,
+            "_id": "5e45921b5414140017349cfa",
+            "nome": "Novo nome do curso",
+            "data_criacao": "2020-02-13T18:14:51.849Z",
+            "__v": 0,
+            "data_modificacao": "2020-02-13T20:22:17.249Z",
+            "mensagem": "Registro alterado com sucesso",
+            "get_url": "https://localhost/cursos/5e45921b5414140017349cfa",
+            "update_url": "https://localhost/cursos/5e45921b5414140017349cfa",
+            "delete_url": "https://localhost/cursos/5e45921b5414140017349cfa",
+            "post_url": "https://localhost/cursos",
+            "get_all_url": "https://localhost/cursos"
+        }
+    }
+
+
+####  Possiveis erros, exemplos abaixo:
+    {
+    "objeto": [
+            {
+            "error": "Cast to ObjectId failed for value \"{ _id: '5e45921b5414140017349cfaa' }\" at path \"_id\" for model \"Course\"",
+            "texto": "Erro interno no banco de dados"
+            }
+        ]
+    }
+
+
+### /cursos
+>##### Method: DELETE /cursos/:id
+
+
+#### Dados enviados no Body:
+    vazio
+
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+    "mensagem": "Registro excluido com sucesso",
+    "post_url": "https://localhost/cursos",
+    "get_all_url": "https://localhost/cursos"
+    }
+
+####  Possiveis erros, exemplos abaixo:
+    {
+    "objeto": [
+        {
+        "error": "Cast to ObjectId failed for value \"5e45921b5414140017349cfaa\" at path \"_id\" for model \"Course\"",
+        "texto": "Erro interno no banco de dados"
+        }
+    ]
+    }
+
+
+### /cursos
+>##### Method: GET /cursos
+
+
+#### Dados enviados no Body:
+    vazio
+
+#### Dados enviados no Header
+    vazio
+
+#### Resposta:
+    {
+    "objeto": [
+        {
+        "ativo": true,
+        "_id": "5e45944ec9ba750017182dd2",
+        "nome": "Ciencia da Computacao",
+        "data_criacao": "2020-02-13T18:24:14.968Z",
+        "__v": 0,
+        "data_modificacao": "2020-02-13T18:48:19.827Z",
+        "get_url": "https://localhost/cursos/5e45944ec9ba750017182dd2",
+        "update_url": "https://localhost/cursos/5e45944ec9ba750017182dd2",
+        "delete_url": "https://localhost/cursos/5e45944ec9ba750017182dd2",
+        "post_url": "https://localhost/cursos",
+        "get_all_url": "https://localhost/cursos"
         },
         {
-          "_id": "5e445cfd06ad0800172d37b4",
-          "curso_id": "5e418fcaf9869000179e2db1",
-          "caracteristica": "Interesse"
+        "ativo": true,
+        "_id": "5e459651c9ba750017182dd8",
+        "nome": "ADS",
+        "data_criacao": "2020-02-13T18:32:49.669Z",
+        "__v": 0,
+        "get_url": "https://localhost/cursos/5e459651c9ba750017182dd8",
+        "update_url": "https://localhost/cursos/5e459651c9ba750017182dd8",
+        "delete_url": "https://localhost/cursos/5e459651c9ba750017182dd8",
+        "post_url": "https://localhost/cursos",
+        "get_all_url": "https://localhost/cursos"
         }
-      ],
-      "data_criacao": "2020-02-12T20:15:57.151Z",
-      "__v": 0,
-      "data_modificacao": "2020-02-12T20:16:38.974Z"
+    ]
     }
+
+
+### /perfil
+>##### Method: POST /perfil
+
+
+#### Dados enviados no Body:
+    {
+        "nome": "Admin"
+    }
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+        "objeto": {
+            "ativo": true,
+            "_id": "5e45a46c84f6260017d4f98b",
+            "nome": "Secretaria",
+            "__v": 0,
+            "get_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+            "update_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+            "delete_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+            "post_url": "https://localhost/perfil",
+            "get_all_url": "https://localhost/perfil"
+        }
+    }
+
+####  Possiveis erros, exemplos abaixo:
+    {
+    "errors":
+        [
+            {
+                "value": "A",
+                "msg": "O perfil esta invalido, preencha com mais de 3 letras",
+                "param": "nome",
+                "location": "body"
+            }
+        ]
+    }
+
+### /perfil
+>##### Method: GET /perfil/:id
+
+
+#### Dados enviados no Body:
+    vazio
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+    "objeto": [
+            {
+                "ativo": true,
+                "_id": "5e45a46c84f6260017d4f98b",
+                "nome": "Secretaria",
+                "__v": 0,
+                "get_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+                "update_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+                "delete_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+                "post_url": "https://localhost/perfil",
+                "get_all_url": "https://localhost/perfil"
+            }
+        ]
+    }
+
+####  Possiveis erros, exemplos abaixo:
+    {
+    "errors":
+        [
+            {
+                "value": "A",
+                "msg": "O perfil esta invalido, preencha com mais de 3 letras",
+                "param": "nome",
+                "location": "body"
+            }
+        ]
+    }
+
+### /perfil
+>##### Method: PUT /perfil/:id
+
+#### Dados enviados no Body:
+    {
+        "perfil": "{{ perfil  }}",
+        "nome": "Novo nome do perfil",
+        "ativo": true,
+        "desligado":false
+    }
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+        "objeto": {
+            "ativo": true,
+            "_id": "5e45a46c84f6260017d4f98b",
+            "nome": "Novo nome do perfil",
+            "__v": 0,
+            "data_modificacao": "2020-02-13T19:41:38.685Z",
+            "mensagem": "Registro alterado com sucesso",
+            "get_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+            "update_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+            "delete_url": "https://localhost/perfil/5e45a46c84f6260017d4f98b",
+            "post_url": "https://localhost/perfil",
+            "get_all_url": "https://localhost/perfil"
+        }
+    }
+
+
+####  Possiveis erros, exemplos abaixo:
+    {
+        "errors": [
+            {
+                "msg": "Preencha com mais de 3 letras",
+                "param": "nome",
+                "location": "body"
+            },
+            {
+                "msg": "Preencha com true ou false",
+                "param": "ativo",
+                "location": "body"
+            }
+        ]
+    }
+
+
+### /perfil
+>##### Method: DELETE /perfil/:id
+
+
+#### Dados enviados no Body:
+    vazio
+
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+  "objeto": {
+            "mensagem": "Registro excluido com sucesso",
+            "post_url": "https://localhost/perfil",
+            "get_all_url": "https://localhost/perfil"
+        }
+    }
+
+####  Possiveis erros, exemplos abaixo:
+    {
+    "objeto": [
+            {
+            "error": "Cast to ObjectId failed for value \"dasdsa\" at path \"_id\" for model \"Profile\"",
+            "texto": "Erro interno no banco de dados"
+            }
+        ]
+    }
+
+
+### /perfil
+>##### Method: GET /perfil
+
+
+#### Dados enviados no Body:
+    vazio
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+        "objeto": [
+            {
+                "ativo": true,
+                "_id": "5e3c4ea75ff10d0017c4b284",
+                "nome": "Diretor",
+                "data_criacao": "2020-01-23T18:49:11.165Z",
+                "__v": 0,
+                "data_modificacao": "2020-02-10T13:52:33.297Z",
+                "get_url": "https://localhost/perfil/5e3c4ea75ff10d0017c4b284",
+                "update_url": "https://localhost/perfil/5e3c4ea75ff10d0017c4b284",
+                "delete_url": "https://localhost/perfil/5e3c4ea75ff10d0017c4b284",
+                "post_url": "https://localhost/perfil",
+                "get_all_url": "https://localhost/perfil"
+            },
+            {
+                "ativo": true,
+                "_id": "5e3c4eb05ff10d0017c4b285",
+                "nome": "Professor",
+                "data_criacao": "2020-01-23T18:49:11.165Z",
+                "__v": 0,
+                "get_url": "https://localhost/perfil/5e3c4eb05ff10d0017c4b285",
+                "update_url": "https://localhost/perfil/5e3c4eb05ff10d0017c4b285",
+                "delete_url": "https://localhost/perfil/5e3c4eb05ff10d0017c4b285",
+                "post_url": "https://localhost/perfil",
+                "get_all_url": "https://localhost/perfil"
+            }
+        ]
+    }
+
+### /user
+>##### Method: POST user
+
+
+#### Dados enviados no Body:
+    {
+        "nome": "José da Silva",
+        "cpf": "12345678909",
+        "email": "jose@post.com",
+        "senha": "1234567",
+        "perfil": "5e45545625f3850c3838c5c9"
   }
-}
-``
+
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+        "objeto": {
+            "ativo": true,
+            "desligado": false,
+            "_id": "5e45b2fe84f6260017d4f98d",
+            "nome": "José da Silva",
+            "cpf": "12345678909",
+            "email": "jose@post.com",
+            "senha": "$2b$10$yBjc65X97LhF8LiXBjkyteV9o2yrpsuDLihacgxvSTawcX31fEbI6",
+            "perfil": "5e45545625f3850c3838c5c9",
+            "curso": [],
+            "data_criacao": "2020-02-13T20:35:10.157Z",
+            "__v": 0,
+            "get_url": "https://localhost/user/5e45b2fe84f6260017d4f98d",
+            "update_url": "https://localhost/user/5e45b2fe84f6260017d4f98d",
+            "delete_url": "https://localhost/user/5e45b2fe84f6260017d4f98d",
+            "post_url": "https://localhost/user",
+            "get_all_url": "https://localhost/user"
+        }
+    }
+
+####  Possiveis erros, exemplos abaixo:
+    {
+        "objeto": [
+            {
+            "error": "O usuario jose@post.com já esta cadastrado",
+            "texto": "Erro interno no banco de dados"
+            }
+        ]
+    },
+    {
+        "errors": [
+            {
+            "value": "Jo",
+            "msg": "Preencha com mais de 3 letras",
+            "param": "nome",
+            "location": "body"
+            },
+            {
+            "value": "1",
+            "msg": "Digite um cpf valido, apenas numeros, sem ponto e sem hifem.",
+            "param": "cpf",
+            "location": "body"
+            },
+            {
+            "value": "123",
+            "msg": "Senha incompativel, digite outra e maior que 4 digitos",
+            "param": "senha",
+            "location": "body"
+            }
+        ]
+    }
+
+### user
+>##### Method: GET user/:id
+
+
+#### Dados enviados no Body:
+    vazio
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+        "objeto": [
+            {
+                "ativo": true,
+                "desligado": false,
+                "_id": "5e45b2fe84f6260017d4f98d",
+                "nome": "José da Silva",
+                "cpf": "12345678909",
+                "email": "jose@post.com",
+                "perfil": null,
+                "curso": [],
+                "data_criacao": "2020-02-13T20:35:10.157Z",
+                "__v": 0,
+                "get_url": "https://localhost/user/5e45b2fe84f6260017d4f98d",
+                "update_url": "https://localhost/user/5e45b2fe84f6260017d4f98d",
+                "delete_url": "https://localhost/user/5e45b2fe84f6260017d4f98d",
+                "post_url": "https://localhost/user",
+                "get_all_url": "https://localhost/user"
+            }
+        ]
+    }
+
+####  Possiveis erros, exemplos abaixo:
+    {
+        "objeto": [
+            {
+            "error": "Cast to ObjectId failed for value \"5e45b2fe84f6260017d4f98dq\" at path \"_id\" for model \"User\"",
+            "texto": "Erro interno no banco de dados"
+            }
+        ]
+    }
+
+
+### user
+>##### Method: PUT user/:id
+
+#### Dados enviados no Body:
+    {
+        "ativo": true,
+        "desligado": false,
+        "nome": "José da Silva",
+        "cpf": "12345678909",
+        "email": "jose@post.com",
+        "perfil": "{{ perfil  }}",
+        "curso": [{
+            "curso_id": {
+                "_id": "5e459668c9ba750017182dd9"
+            },
+            "caracteristica": "Professor"
+        }]
+    }
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+    "objeto": {
+        "ativo": true,
+        "desligado": false,
+        "_id": "5e45b2fe84f6260017d4f98d",
+        "nome": "José da Silva",
+        "cpf": "12345678909",
+        "email": "jose@post.com",
+        "perfil": "5e45b63d84f6260017d4f99a",
+        "curso": [
+        {
+            "_id": "5e45b65984f6260017d4f99b",
+            "curso_id": "5e459668c9ba750017182dd9",
+            "caracteristica": "Professor"
+        }
+        ],
+        "data_criacao": "2020-02-13T20:35:10.157Z",
+        "__v": 0,
+        "data_modificacao": "2020-02-13T20:49:29.179Z",
+        "mensagem": "Registro alterado com sucesso",
+        "get_url": "https://localhost/user/5e45b2fe84f6260017d4f98d",
+        "update_url": "https://localhost/user/5e45b2fe84f6260017d4f98d",
+        "delete_url": "https://localhost/user/5e45b2fe84f6260017d4f98d",
+        "post_url": "https://localhost/user",
+        "get_all_url": "https://localhost/user"
+    }
+    }
+
+
+####  Possiveis erros, exemplos abaixo:
+    {
+        "objeto": [
+            {
+            "error": "Cast to ObjectId failed for value \"{ _id: '5e45b2fe84f6260017d4f98dq' }\" at path \"_id\" for model \"User\"",
+            "texto": "Erro interno no banco de dados"
+            }
+        ]
+    }
+
+
+### user
+>##### Method: DELETE user/:id
+
+
+#### Dados enviados no Body:
+    vazio
+
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+    "objeto": {
+        "mensagem": "Registro excluido com sucesso",
+        "post_url": "https://localhost/user",
+        "get_all_url": "https://localhost/user"
+    }
+    }
+
+
+####  Possiveis erros, exemplos abaixo:
+    {
+        "objeto": {
+            "mensagem": "Nenhum registro excluido ou não encontrado",
+            "post_url": "https://localhost/user",
+            "get_all_url": "https://localhost/user"
+        }
+    }
+
+
+
+### user
+>##### Method: GET user
+
+
+#### Dados enviados no Body:
+    vazio
+
+#### Dados enviados no Header
+    x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDQ1Y2ZkMDZhZDA4bWUiOiYiOiIxWlsIjoidDVAdDUuY29tIiwic2VuaGEiOiIiLCJwZX"
+
+#### Resposta:
+    {
+    "objeto": [
+        {
+        "ativo": true,
+        "desligado": false,
+        "_id": "5e459d5dc9ba750017182dde",
+        "nome": "fudeu",
+        "cpf": "12345678909",
+        "email": "s@s.com",
+        "perfil": null,
+        "curso": [
+            {
+            "_id": "5e45b5ef84f6260017d4f997",
+            "curso_id": {
+                "_id": "5e45964ec9ba750017182dd7",
+                "nome": "Quimica"
+            },
+            "caracteristica": "Professor"
+            }
+        ],
+        "data_criacao": "2020-02-13T19:02:53.362Z",
+        "__v": 0,
+        "data_modificacao": "2020-02-13T20:47:43.575Z",
+        "get_url": "https://localhost/user/5e459d5dc9ba750017182dde",
+        "update_url": "https://localhost/user/5e459d5dc9ba750017182dde",
+        "delete_url": "https://localhost/user/5e459d5dc9ba750017182dde",
+        "post_url": "https://localhost/user",
+        "get_all_url": "https://localhost/user"
+        },
+        {
+        "ativo": false,
+        "desligado": false,
+        "_id": "5e45a00184f6260017d4f987",
+        "nome": "O Chicote vai estralar",
+        "cpf": "12345678909",
+        "email": "chicote@vaiestralar.com.br",
+        "perfil": null,
+        "curso": [
+            {
+            "_id": "5e45a00184f6260017d4f989",
+            "curso_id": {
+                "_id": "5e3d67110e21ec00178faf6f",
+                "nome": "Ciencias da Computacao Novo"
+            },
+            "caracteristica": "Aluno"
+            },
+            {
+            "_id": "5e45a00184f6260017d4f988",
+            "curso_id": {
+                "_id": "5e418fcaf9869000179e2db1",
+                "nome": "Gestão de Projetos do Luiz Felipe"
+            },
+            "caracteristica": "Interesse"
+            }
+        ],
+        "data_criacao": "2020-02-13T19:14:09.530Z",
+        "__v": 0,
+        "get_url": "https://localhost/user/5e45a00184f6260017d4f987",
+        "update_url": "https://localhost/user/5e45a00184f6260017d4f987",
+        "delete_url": "https://localhost/user/5e45a00184f6260017d4f987",
+        "post_url": "https://localhost/user",
+        "get_all_url": "https://localhost/user"
+        },
+        {
+        "ativo": false,
+        "desligado": false,
+        "_id": "5e45b2fe84f6260017d4f98d",
+        "nome": "José da Silva",
+        "cpf": "12345678909",
+        "email": "jose@post.com",
+        "perfil": null,
+        "curso": [
+            {
+            "_id": "5e45b65984f6260017d4f99b",
+            "curso_id": {
+                "_id": "5e459668c9ba750017182dd9",
+                "nome": "ED Fisica"
+            },
+            "caracteristica": "Professor"
+            }
+        ],
+        "data_criacao": "2020-02-13T20:35:10.157Z",
+        "__v": 0,
+        "data_modificacao": "2020-02-13T20:55:34.211Z",
+        "get_url": "https://localhost/user/5e45b2fe84f6260017d4f98d",
+        "update_url": "https://localhost/user/5e45b2fe84f6260017d4f98d",
+        "delete_url": "https://localhost/user/5e45b2fe84f6260017d4f98d",
+        "post_url": "https://localhost/user",
+        "get_all_url": "https://localhost/user"
+        }
+    ]
+    }
