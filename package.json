@@ -11,7 +11,7 @@
   "author": "Universo 7",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "3.0.6",
+    "bcrypt": "5.0.0",
     "consign": "0.1.6",
     "cors": "2.8.5",
     "csv-parser": "^2.3.2",
